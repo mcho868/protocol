@@ -1,0 +1,993 @@
+------------------------------------
+Translated Report (Full Report Below)
+-------------------------------------
+Process:             Runner [38142]
+Path:                /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Runner
+Identifier:          com.example.aiCoachingApp
+Version:             1.0.0 (1)
+Code Type:           ARM-64 (Native)
+Role:                Foreground
+Parent Process:      launchd_sim [92568]
+Coalition:           com.apple.CoreSimulator.SimDevice.E990772F-6B4E-493A-8F00-2981A44A2FED [33075]
+Responsible Process: SimulatorTrampoline [86156]
+User ID:             501
+
+Date/Time:           2026-01-30 14:44:54.1848 +0900
+Launch Time:         2026-01-30 14:44:50.2304 +0900
+Hardware Model:      Mac16,8
+OS Version:          macOS 26.2 (25C56)
+Release Type:        User
+
+Crash Reporter Key:  CBFB4ACE-E09C-C24E-E567-33155EE33F1C
+Incident Identifier: 255EC5AD-04DC-4C62-8D0E-DDB532D519C1
+
+Sleep/Wake UUID:       B28D0EBC-7292-488E-BD49-8757D7A4F7F8
+
+Time Awake Since Boot: 320000 seconds
+Time Since Wake:       53793 seconds
+
+System Integrity Protection: enabled
+
+Triggered by Thread: 0, Dispatch Queue: com.apple.main-thread
+
+Exception Type:    EXC_CRASH (SIGABRT)
+Exception Codes:   0x0000000000000000, 0x0000000000000000
+
+Termination Reason:  Namespace SIGNAL, Code 6, Abort trap: 6
+Terminating Process: Runner [38142]
+
+
+Last Exception Backtrace:
+0   CoreFoundation                	       0x1804b9100 __exceptionPreprocess + 160
+1   libobjc.A.dylib               	       0x180092da8 objc_exception_throw + 72
+2   CoreFoundation                	       0x1804b901c -[NSException initWithCoder:] + 0
+3   GoogleSignIn                  	       0x104ae2fdc -[GIDSignIn signInWithOptions:] + 152 (GIDSignIn.m:575)
+4   GoogleSignIn                  	       0x104ae19a0 -[GIDSignIn signInWithPresentingViewController:hint:additionalScopes:completion:] + 208 (GIDSignIn.m:282)
+5   Runner.debug.dylib            	       0x1048af43c -[FLTGoogleSignInPlugin signInWithHint:additionalScopes:completion:] + 176
+6   Runner.debug.dylib            	       0x1048ae4a8 -[FLTGoogleSignInPlugin signInWithCompletion:] + 776
+7   Runner.debug.dylib            	       0x1048b3830 __FSIGoogleSignInApiSetup_block_invoke.119 + 192
+8   Flutter                       	       0x107c1173c __48-[FlutterBasicMessageChannel setMessageHandler:]_block_invoke + 160
+9   Flutter                       	       0x107748ae0 invocation function for block in flutter::PlatformMessageHandlerIos::HandlePlatformMessage(std::_fl::unique_ptr<flutter::PlatformMessage, std::_fl::default_delete<flutter::PlatformMessage>>) + 108
+10  libdispatch.dylib             	       0x18017b314 _dispatch_call_block_and_release + 24
+11  libdispatch.dylib             	       0x18017cc08 _dispatch_client_callout + 16
+12  libdispatch.dylib             	       0x18018bc2c _dispatch_main_queue_drain + 1276
+13  libdispatch.dylib             	       0x18018b720 _dispatch_main_queue_callback_4CF + 40
+14  CoreFoundation                	       0x18041cdac __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 12
+15  CoreFoundation                	       0x180417308 __CFRunLoopRun + 1944
+16  CoreFoundation                	       0x1804166f4 CFRunLoopRunSpecific + 552
+17  GraphicsServices              	       0x1905e5b10 GSEventRunModal + 160
+18  UIKitCore                     	       0x185b319dc -[UIApplication _run] + 796
+19  UIKitCore                     	       0x185b35bd4 UIApplicationMain + 124
+20  UIKitCore                     	       0x184f0a334 0x184cd3000 + 2323252
+21  Runner.debug.dylib            	       0x1048aa538 static UIApplicationDelegate.main() + 128
+22  Runner.debug.dylib            	       0x1048aa4a8 static AppDelegate.$main() + 44
+23  Runner.debug.dylib            	       0x1048aa5b4 __debug_main_executable_dylib_entry_point + 28
+24  ???                           	       0x104a0d410 ???
+25  dyld                          	       0x104b30d54 start + 7184
+
+Kernel Triage:
+VM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter
+VM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter
+VM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter
+VM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter
+VM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter
+
+
+Thread 0 Crashed::  Dispatch queue: com.apple.main-thread
+0   libsystem_kernel.dylib        	       0x104eb485c __pthread_kill + 8
+1   libsystem_pthread.dylib       	       0x1051062a8 pthread_kill + 264
+2   libsystem_c.dylib             	       0x1801704ec abort + 104
+3   libc++abi.dylib               	       0x1802ad100 abort_message + 128
+4   libc++abi.dylib               	       0x18029cb04 demangling_terminate_handler() + 300
+5   libobjc.A.dylib               	       0x18006f8ac _objc_terminate() + 124
+6   libc++abi.dylib               	       0x1802ac4d8 std::__terminate(void (*)()) + 12
+7   libc++abi.dylib               	       0x1802ac488 std::terminate() + 52
+8   libdispatch.dylib             	       0x18017cc1c _dispatch_client_callout + 36
+9   libdispatch.dylib             	       0x18018bc2c _dispatch_main_queue_drain + 1276
+10  libdispatch.dylib             	       0x18018b720 _dispatch_main_queue_callback_4CF + 40
+11  CoreFoundation                	       0x18041cdac __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 12
+12  CoreFoundation                	       0x180417308 __CFRunLoopRun + 1944
+13  CoreFoundation                	       0x1804166f4 CFRunLoopRunSpecific + 552
+14  GraphicsServices              	       0x1905e5b10 GSEventRunModal + 160
+15  UIKitCore                     	       0x185b319dc -[UIApplication _run] + 796
+16  UIKitCore                     	       0x185b35bd4 UIApplicationMain + 124
+17  UIKitCore                     	       0x184f0a334 0x184cd3000 + 2323252
+18  Runner.debug.dylib            	       0x1048aa538 static UIApplicationDelegate.main() + 128
+19  Runner.debug.dylib            	       0x1048aa4a8 static AppDelegate.$main() + 44
+20  Runner.debug.dylib            	       0x1048aa5b4 __debug_main_executable_dylib_entry_point + 28
+21  ???                           	       0x104a0d410 ???
+22  dyld                          	       0x104b30d54 start + 7184
+
+Thread 1:
+
+Thread 2:
+
+Thread 3:
+
+Thread 4:
+
+Thread 5:: com.apple.uikit.eventfetch-thread
+0   libsystem_kernel.dylib        	       0x104eacb70 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x104ebd90c mach_msg2_internal + 72
+2   libsystem_kernel.dylib        	       0x104eb4c10 mach_msg_overwrite + 480
+3   libsystem_kernel.dylib        	       0x104eacee4 mach_msg + 20
+4   CoreFoundation                	       0x18041cad0 __CFRunLoopServiceMachPort + 156
+5   CoreFoundation                	       0x180416ff8 __CFRunLoopRun + 1160
+6   CoreFoundation                	       0x1804166f4 CFRunLoopRunSpecific + 552
+7   Foundation                    	       0x180f1f438 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 208
+8   Foundation                    	       0x180f1f658 -[NSRunLoop(NSRunLoop) runUntilDate:] + 60
+9   UIKitCore                     	       0x185bdf284 -[UIEventFetcher threadMain] + 404
+10  Foundation                    	       0x180f46280 __NSThread__start__ + 720
+11  libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+12  libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 6:
+
+Thread 7:
+
+Thread 8:
+
+Thread 9:: io.flutter.1.raster
+0   libsystem_kernel.dylib        	       0x104eacb70 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x104ebd90c mach_msg2_internal + 72
+2   libsystem_kernel.dylib        	       0x104eb4c10 mach_msg_overwrite + 480
+3   libsystem_kernel.dylib        	       0x104eacee4 mach_msg + 20
+4   CoreFoundation                	       0x18041cad0 __CFRunLoopServiceMachPort + 156
+5   CoreFoundation                	       0x180416ff8 __CFRunLoopRun + 1160
+6   CoreFoundation                	       0x1804166f4 CFRunLoopRunSpecific + 552
+7   Flutter                       	       0x10777d2bc fml::MessageLoopDarwin::Run() + 92
+8   Flutter                       	       0x107775d84 fml::MessageLoopImpl::DoRun() + 44
+9   Flutter                       	       0x10777b964 std::_fl::__function::__func<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0, std::_fl::allocator<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0>, void ()>::operator()() + 184
+10  Flutter                       	       0x10777b628 fml::ThreadHandle::ThreadHandle(std::_fl::function<void ()>&&)::$_0::__invoke(void*) + 36
+11  libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+12  libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 10:: io.flutter.1.io
+0   libsystem_kernel.dylib        	       0x104eacb70 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x104ebd90c mach_msg2_internal + 72
+2   libsystem_kernel.dylib        	       0x104eb4c10 mach_msg_overwrite + 480
+3   libsystem_kernel.dylib        	       0x104eacee4 mach_msg + 20
+4   CoreFoundation                	       0x18041cad0 __CFRunLoopServiceMachPort + 156
+5   CoreFoundation                	       0x180416ff8 __CFRunLoopRun + 1160
+6   CoreFoundation                	       0x1804166f4 CFRunLoopRunSpecific + 552
+7   Flutter                       	       0x10777d2bc fml::MessageLoopDarwin::Run() + 92
+8   Flutter                       	       0x107775d84 fml::MessageLoopImpl::DoRun() + 44
+9   Flutter                       	       0x10777b964 std::_fl::__function::__func<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0, std::_fl::allocator<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0>, void ()>::operator()() + 184
+10  Flutter                       	       0x10777b628 fml::ThreadHandle::ThreadHandle(std::_fl::function<void ()>&&)::$_0::__invoke(void*) + 36
+11  libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+12  libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 11:: io.flutter.1.profiler
+0   libsystem_kernel.dylib        	       0x104eacb70 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x104ebd90c mach_msg2_internal + 72
+2   libsystem_kernel.dylib        	       0x104eb4c10 mach_msg_overwrite + 480
+3   libsystem_kernel.dylib        	       0x104eacee4 mach_msg + 20
+4   CoreFoundation                	       0x18041cad0 __CFRunLoopServiceMachPort + 156
+5   CoreFoundation                	       0x180416ff8 __CFRunLoopRun + 1160
+6   CoreFoundation                	       0x1804166f4 CFRunLoopRunSpecific + 552
+7   Flutter                       	       0x10777d2bc fml::MessageLoopDarwin::Run() + 92
+8   Flutter                       	       0x107775d84 fml::MessageLoopImpl::DoRun() + 44
+9   Flutter                       	       0x10777b964 std::_fl::__function::__func<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0, std::_fl::allocator<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0>, void ()>::operator()() + 184
+10  Flutter                       	       0x10777b628 fml::ThreadHandle::ThreadHandle(std::_fl::function<void ()>&&)::$_0::__invoke(void*) + 36
+11  libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+12  libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 12:: io.worker.1
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106a74 _pthread_cond_wait + 976
+2   Flutter                       	       0x10774e20c std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&) + 24
+3   Flutter                       	       0x107772528 fml::ConcurrentMessageLoop::WorkerMain() + 140
+4   Flutter                       	       0x107772bd0 void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*) + 192
+5   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+6   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 13:: io.worker.2
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106a74 _pthread_cond_wait + 976
+2   Flutter                       	       0x10774e20c std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&) + 24
+3   Flutter                       	       0x107772528 fml::ConcurrentMessageLoop::WorkerMain() + 140
+4   Flutter                       	       0x107772bd0 void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*) + 192
+5   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+6   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 14:: io.worker.3
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106a74 _pthread_cond_wait + 976
+2   Flutter                       	       0x10774e20c std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&) + 24
+3   Flutter                       	       0x107772528 fml::ConcurrentMessageLoop::WorkerMain() + 140
+4   Flutter                       	       0x107772bd0 void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*) + 192
+5   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+6   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 15:: io.worker.4
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106a74 _pthread_cond_wait + 976
+2   Flutter                       	       0x10774e20c std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&) + 24
+3   Flutter                       	       0x107772528 fml::ConcurrentMessageLoop::WorkerMain() + 140
+4   Flutter                       	       0x107772bd0 void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*) + 192
+5   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+6   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 16:: dart:io EventHandler
+0   libsystem_kernel.dylib        	       0x104eb265c kevent + 8
+1   Flutter                       	       0x107bcf37c dart::bin::EventHandlerImplementation::EventHandlerEntry(unsigned long) + 304
+2   Flutter                       	       0x107beb460 dart::bin::ThreadStart(void*) + 92
+3   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+4   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 17:: Dart Profiler ThreadInterrupter
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106a74 _pthread_cond_wait + 976
+2   Flutter                       	       0x107c38c7c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 128
+3   Flutter                       	       0x107d9b638 dart::ThreadInterrupter::ThreadMain(unsigned long) + 336
+4   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+5   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+6   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 18:: Dart Profiler SampleBlockProcessor
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107d558d0 dart::SampleBlockProcessor::ThreadMain(unsigned long) + 292
+4   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+5   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+6   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 19:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107d9c3d8 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 512
+4   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+5   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+6   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+7   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 20:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107d9c3d8 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 512
+4   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+5   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+6   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+7   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 21:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107c97d0c dart::MutatorThreadPool::OnEnterIdleLocked(dart::MutexLocker*, dart::ThreadPool::Worker*) + 156
+4   Flutter                       	       0x107d9c254 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 124
+5   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+6   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+7   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+8   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 22:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107d9c3d8 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 512
+4   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+5   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+6   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+7   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 23:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107c97d0c dart::MutatorThreadPool::OnEnterIdleLocked(dart::MutexLocker*, dart::ThreadPool::Worker*) + 156
+4   Flutter                       	       0x107d9c254 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 124
+5   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+6   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+7   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+8   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 24:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107d9c3d8 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 512
+4   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+5   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+6   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+7   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 25:: DartWorker
+0   libsystem_kernel.dylib        	       0x104eb0020 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x105106aa0 _pthread_cond_wait + 1020
+2   Flutter                       	       0x107c38c6c dart::ConditionVariable::WaitMicros(dart::Mutex*, long long) + 112
+3   Flutter                       	       0x107d9c3d8 dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*) + 512
+4   Flutter                       	       0x107d9c538 dart::ThreadPool::Worker::Main(unsigned long) + 116
+5   Flutter                       	       0x107d50ca8 dart::ThreadStart(void*) + 208
+6   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+7   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 26:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 27:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 28:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 29:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 30:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 31:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 32:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 33:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 34:: isarworker
+0   libsystem_kernel.dylib        	       0x104eacaec semaphore_wait_trap + 8
+1   libdispatch.dylib             	       0x18017d0c0 _dispatch_sema4_wait + 24
+2   libdispatch.dylib             	       0x18017d734 _dispatch_semaphore_wait_slow + 128
+3   isar_flutter_libs             	       0x104fd0818 std::sync::mpmc::context::Context::with::_$u7b$$u7b$closure$u7d$$u7d$::h65c9b68c11c8d53b + 508
+4   isar_flutter_libs             	       0x104fcf320 std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 604
+5   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+8   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+9   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+10  libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 35:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 36:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+Thread 37:: isarworker
+0   libsystem_kernel.dylib        	       0x104eaf570 __psynch_mutexwait + 8
+1   libsystem_pthread.dylib       	       0x105103acc _pthread_mutex_firstfit_lock_wait + 80
+2   libsystem_pthread.dylib       	       0x1051016b4 _pthread_mutex_firstfit_lock_slow + 216
+3   isar_flutter_libs             	       0x104fcf17c std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6 + 184
+4   isar_flutter_libs             	       0x104fcef0c core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70 + 232
+5   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510 + 12 (boxed.rs:1988) [inlined]
+6   isar_flutter_libs             	       0x104fcea90 _$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2 + 16 (boxed.rs:1988) [inlined]
+7   isar_flutter_libs             	       0x104fcea90 std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f + 36 (thread.rs:108)
+8   libsystem_pthread.dylib       	       0x1051065ac _pthread_start + 104
+9   libsystem_pthread.dylib       	       0x105101998 thread_start + 8
+
+
+Thread 0 crashed with ARM Thread State (64-bit):
+    x0: 0x0000000000000000   x1: 0x0000000000000000   x2: 0x0000000000000000   x3: 0x0000000000000000
+    x4: 0x00000001802b0dd7   x5: 0x000000016b5a0c60   x6: 0x000000000000006e   x7: 0x0000000000000000
+    x8: 0x0000000104bd5e40   x9: 0x7bdf924d1f38bb6a  x10: 0x0000000000000051  x11: 0x000000000000000b
+   x12: 0x000000000000000b  x13: 0x00000001806c1dce  x14: 0x00000000000007fb  x15: 0x00000000f0a01063
+   x16: 0x0000000000000148  x17: 0x00000000f0c0086e  x18: 0x0000000000000000  x19: 0x0000000000000006
+   x20: 0x0000000000000103  x21: 0x0000000104bd5f20  x22: 0x00000000000f06ff  x23: 0x0000000000000114
+   x24: 0x0000600001750300  x25: 0x0000600001750300  x26: 0x0000000000000000  x27: 0x0000000000000000
+   x28: 0x0000000000000000   fp: 0x000000016b5a0bd0   lr: 0x00000001051062a8
+    sp: 0x000000016b5a0bb0   pc: 0x0000000104eb485c cpsr: 0x40000000
+   far: 0x0000000000000000  esr: 0x56000080 (Syscall)
+
+Binary Images:
+       0x104b28000 -        0x104bc7fff dyld (*) <0975afba-c46b-364c-bd84-a75daa9e455a> /usr/lib/dyld
+       0x10485c000 -        0x10485ffff com.example.aiCoachingApp (1.0.0) <64ba2af5-b524-3a9a-b982-65edba6e29b9> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Runner
+       0x1048a8000 -        0x1048bbfff Runner.debug.dylib (*) <171c54fd-c341-325a-8edc-04e34d741df4> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Runner.debug.dylib
+       0x104940000 -        0x104967fff org.cocoapods.AppAuth (1.7.6) <d4864181-a5de-38d3-b16b-bf62558e4dc7> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/AppAuth.framework/AppAuth
+       0x10499c000 -        0x1049bffff org.cocoapods.AppCheckCore (11.2.0) <a8f81a84-e70e-334d-b0a6-25cc5ab0aed3> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/AppCheckCore.framework/AppCheckCore
+       0x104874000 -        0x104887fff org.cocoapods.FBLPromises (2.4.0) <e8de2d5f-4897-3c53-a4fe-e3582b71be57> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/FBLPromises.framework/FBLPromises
+       0x104c5c000 -        0x104c7ffff org.cocoapods.GTMAppAuth (4.1.1) <81077340-3b80-360f-a97f-885e606769cb> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/GTMAppAuth.framework/GTMAppAuth
+       0x104d58000 -        0x104daffff org.cocoapods.GTMSessionFetcher (3.5.0) <725ba4e4-874b-37e3-abec-38f24295b186> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/GTMSessionFetcher.framework/GTMSessionFetcher
+       0x104ad4000 -        0x104af7fff org.cocoapods.GoogleSignIn (8.0.0) <678413bb-fff1-3602-90ec-334d04c04660> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/GoogleSignIn.framework/GoogleSignIn
+       0x104908000 -        0x104913fff org.cocoapods.GoogleUtilities (8.1.0) <092677cb-801b-314a-9e97-d968f88163d6> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/GoogleUtilities.framework/GoogleUtilities
+       0x1048e0000 -        0x1048ebfff org.cocoapods.app-links (6.4.1) <10feab29-6285-323c-9ef6-39abd2d08957> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/app_links.framework/app_links
+       0x104ce8000 -        0x104cf3fff org.cocoapods.connectivity-plus (0.0.1) <ffd5b381-b876-3c25-ad01-a84350717998> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/connectivity_plus.framework/connectivity_plus
+       0x104d14000 -        0x104d23fff org.cocoapods.flutter-local-notifications (0.0.1) <2c23df42-2e09-361e-8c8c-7094540cd726> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/flutter_local_notifications.framework/flutter_local_notifications
+       0x104f3c000 -        0x10502ffff org.cocoapods.isar-flutter-libs (1.0.0) <d3848ab4-0efa-3140-8197-c293730d7da2> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/isar_flutter_libs.framework/isar_flutter_libs
+       0x104e34000 -        0x104e47fff org.cocoapods.shared-preferences-foundation (0.0.1) <0e82b753-4599-32f3-94df-1b07fe1e0765> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation
+       0x104e70000 -        0x104e83fff org.cocoapods.url-launcher-ios (0.0.1) <bf20e8e8-ab4d-35ca-a725-8022f5c10760> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/url_launcher_ios.framework/url_launcher_ios
+       0x1076e0000 -        0x10951ffff io.flutter.flutter (1.0) <4c4c44e6-5555-3144-a1c2-99c2fdd23ee3> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/Flutter.framework/Flutter
+       0x104cb8000 -        0x104cbffff libsystem_platform.dylib (*) <de4033bb-4a6b-317a-bda6-b3a408656844> /usr/lib/system/libsystem_platform.dylib
+       0x104eac000 -        0x104ee7fff libsystem_kernel.dylib (*) <8f54f386-9b41-376a-9ba3-9423bbabb1b6> /usr/lib/system/libsystem_kernel.dylib
+       0x105100000 -        0x10510ffff libsystem_pthread.dylib (*) <48ca2121-5ca2-3e04-bc91-a33151256e77> /usr/lib/system/libsystem_pthread.dylib
+       0x105188000 -        0x105193fff libobjc-trampolines.dylib (*) <a31fa6bc-f00c-3232-9da8-4e5d7922ed9a> /Volumes/VOLUME/*/libobjc-trampolines.dylib
+       0x11783c000 -        0x11784ffff io.flutter.flutter.native-assets.objective-c (1.0) <5ff5a827-d955-34d8-812f-2e1bfb1a5ef9> /Users/USER/Library/Developer/CoreSimulator/Devices/E990772F-6B4E-493A-8F00-2981A44A2FED/data/Containers/Bundle/Application/C9AF9C4D-E2DE-451F-8269-53636C89F423/Runner.app/Frameworks/objective_c.framework/objective_c
+       0x1800fd000 -        0x180178ff3 libsystem_c.dylib (*) <3e34edd7-d111-3f74-bacd-9a4e955d66e6> /Volumes/VOLUME/*/libsystem_c.dylib
+       0x180298000 -        0x1802b3fff libc++abi.dylib (*) <d72e40f3-f7a1-329e-938b-c99e263e665f> /Volumes/VOLUME/*/libc++abi.dylib
+       0x180068000 -        0x1800a3d53 libobjc.A.dylib (*) <9ee78930-1d2d-365d-8cdd-fe423f3c769c> /Volumes/VOLUME/*/libobjc.A.dylib
+       0x180179000 -        0x1801bdfff libdispatch.dylib (*) <d5e90ee3-9c77-3808-a2ca-3e15e11a9aa1> /Volumes/VOLUME/*/libdispatch.dylib
+       0x18038d000 -        0x18075afff com.apple.CoreFoundation (6.9) <e965e773-9803-3e02-8243-5cb8f4365f11> /Volumes/VOLUME/*/CoreFoundation.framework/CoreFoundation
+       0x1905e2000 -        0x1905eafff com.apple.GraphicsServices (1.0) <9c82f9b7-b20c-3255-80a1-c4a1e74ef754> /Volumes/VOLUME/*/GraphicsServices.framework/GraphicsServices
+       0x184cd3000 -        0x186a10fff com.apple.UIKitCore (1.0) <24ff1688-4bc4-3da8-8f17-c73d22f96263> /Volumes/VOLUME/*/UIKitCore.framework/UIKitCore
+               0x0 - 0xffffffffffffffff ??? (*) <00000000-0000-0000-0000-000000000000> ???
+       0x1807da000 -        0x181416fff com.apple.Foundation (6.9) <b8e40415-c88f-3ceb-971c-82679743b9be> /Volumes/VOLUME/*/Foundation.framework/Foundation
+
+External Modification Summary:
+  Calls made by other processes targeting this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by all processes on this machine:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+
+VM Region Summary:
+ReadOnly portion of Libraries: Total=1.6G resident=0K(0%) swapped_out_or_unallocated=1.6G(100%)
+Writable regions: Total=862.8M written=1939K(0%) resident=1939K(0%) swapped_out=0K(0%) unallocated=860.9M(100%)
+
+                                VIRTUAL   REGION 
+REGION TYPE                        SIZE    COUNT (non-coalesced) 
+===========                     =======  ======= 
+Activity Tracing                   256K        1 
+ColorSync                          128K        5 
+Foundation                          16K        1 
+IOSurface                         36.5M        4 
+Kernel Alloc Once                   32K        1 
+MALLOC                           623.8M       93 
+MALLOC guard page                  128K        8 
+STACK GUARD                       56.6M       38 
+Stack                             55.1M       38 
+VM_ALLOCATE                      154.7M      376 
+__DATA                            30.9M      779 
+__DATA_CONST                      85.7M      801 
+__DATA_DIRTY                       139K       11 
+__FONT_DATA                        2352        1 
+__LINKEDIT                       693.1M       23 
+__OBJC_RW                         2703K        1 
+__TEXT                           894.5M      815 
+__TPRO_CONST                       148K        2 
+dyld private memory                2.5G       12 
+mapped file                        1.1G       18 
+page table in kernel              1939K        1 
+shared memory                       16K        1 
+===========                     =======  ======= 
+TOTAL                              6.2G     3030 
+
+
+-----------
+Full Report
+-----------
+
+{"app_name":"Runner","timestamp":"2026-01-30 14:44:56.00 +0900","app_version":"1.0.0","slice_uuid":"64ba2af5-b524-3a9a-b982-65edba6e29b9","build_version":"1","platform":7,"bundleID":"com.example.aiCoachingApp","share_with_app_devs":0,"is_first_party":0,"bug_type":"309","os_version":"macOS 26.2 (25C56)","roots_installed":0,"name":"Runner","incident_id":"255EC5AD-04DC-4C62-8D0E-DDB532D519C1"}
+{
+  "uptime" : 320000,
+  "procRole" : "Foreground",
+  "version" : 2,
+  "userID" : 501,
+  "deployVersion" : 210,
+  "modelCode" : "Mac16,8",
+  "coalitionID" : 33075,
+  "osVersion" : {
+    "train" : "macOS 26.2",
+    "build" : "25C56",
+    "releaseType" : "User"
+  },
+  "captureTime" : "2026-01-30 14:44:54.1848 +0900",
+  "codeSigningMonitor" : 2,
+  "incident" : "255EC5AD-04DC-4C62-8D0E-DDB532D519C1",
+  "pid" : 38142,
+  "translated" : false,
+  "cpuType" : "ARM-64",
+  "procLaunch" : "2026-01-30 14:44:50.2304 +0900",
+  "procStartAbsTime" : 7785282178999,
+  "procExitAbsTime" : 7785376955357,
+  "procName" : "Runner",
+  "procPath" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Runner",
+  "bundleInfo" : {"CFBundleShortVersionString":"1.0.0","CFBundleVersion":"1","CFBundleIdentifier":"com.example.aiCoachingApp"},
+  "storeInfo" : {"deviceIdentifierForVendor":"8DB1B594-E0F2-5D5E-B3AB-DC9BE22C5563","thirdParty":true},
+  "parentProc" : "launchd_sim",
+  "parentPid" : 92568,
+  "coalitionName" : "com.apple.CoreSimulator.SimDevice.E990772F-6B4E-493A-8F00-2981A44A2FED",
+  "crashReporterKey" : "CBFB4ACE-E09C-C24E-E567-33155EE33F1C",
+  "appleIntelligenceStatus" : {"reasons":["notOptedIn","assetIsNotReady"],"state":"unavailable"},
+  "developerMode" : 1,
+  "responsiblePid" : 86156,
+  "responsibleProc" : "SimulatorTrampoline",
+  "codeSigningID" : "com.example.aiCoachingApp",
+  "codeSigningTeamID" : "",
+  "codeSigningFlags" : 570425857,
+  "codeSigningValidationCategory" : 10,
+  "codeSigningTrustLevel" : 4294967295,
+  "codeSigningAuxiliaryInfo" : 0,
+  "instructionByteStream" : {"beforePC":"4wAAVP17v6n9AwCRKeP\/l78DAJH9e8GowANf1sADX9YQKYDSARAA1A==","atPC":"4wAAVP17v6n9AwCRH+P\/l78DAJH9e8GowANf1sADX9ZwCoDSARAA1A=="},
+  "bootSessionUUID" : "9EB77842-E02F-4C67-8D23-CF1134820C52",
+  "wakeTime" : 53793,
+  "sleepWakeUUID" : "B28D0EBC-7292-488E-BD49-8757D7A4F7F8",
+  "sip" : "enabled",
+  "exception" : {"codes":"0x0000000000000000, 0x0000000000000000","rawCodes":[0,0],"type":"EXC_CRASH","signal":"SIGABRT"},
+  "termination" : {"flags":0,"code":6,"namespace":"SIGNAL","indicator":"Abort trap: 6","byProc":"Runner","byPid":38142},
+  "ktriageinfo" : "VM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter\nVM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter\nVM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter\nVM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter\nVM - (arg = 0x3) mach_vm_allocate_kernel failed within call to vm_map_enter\n",
+  "extMods" : {"caller":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"system":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"targeted":{"thread_create":0,"thread_set_state":0,"task_for_pid":0},"warnings":0},
+  "lastExceptionBacktrace" : [{"imageOffset":1229056,"symbol":"__exceptionPreprocess","symbolLocation":160,"imageIndex":26},{"imageOffset":175528,"symbol":"objc_exception_throw","symbolLocation":72,"imageIndex":24},{"imageOffset":1228828,"symbol":"-[NSException initWithCoder:]","symbolLocation":0,"imageIndex":26},{"imageOffset":61404,"sourceLine":575,"sourceFile":"GIDSignIn.m","symbol":"-[GIDSignIn signInWithOptions:]","imageIndex":8,"symbolLocation":152},{"imageOffset":55712,"sourceLine":282,"sourceFile":"GIDSignIn.m","symbol":"-[GIDSignIn signInWithPresentingViewController:hint:additionalScopes:completion:]","imageIndex":8,"symbolLocation":208},{"imageOffset":29756,"symbol":"-[FLTGoogleSignInPlugin signInWithHint:additionalScopes:completion:]","symbolLocation":176,"imageIndex":2},{"imageOffset":25768,"symbol":"-[FLTGoogleSignInPlugin signInWithCompletion:]","symbolLocation":776,"imageIndex":2},{"imageOffset":47152,"symbol":"__FSIGoogleSignInApiSetup_block_invoke.119","symbolLocation":192,"imageIndex":2},{"imageOffset":5445436,"symbol":"__48-[FlutterBasicMessageChannel setMessageHandler:]_block_invoke","symbolLocation":160,"imageIndex":16},{"imageOffset":428768,"symbol":"invocation function for block in flutter::PlatformMessageHandlerIos::HandlePlatformMessage(std::_fl::unique_ptr<flutter::PlatformMessage, std::_fl::default_delete<flutter::PlatformMessage>>)","symbolLocation":108,"imageIndex":16},{"imageOffset":8980,"symbol":"_dispatch_call_block_and_release","symbolLocation":24,"imageIndex":25},{"imageOffset":15368,"symbol":"_dispatch_client_callout","symbolLocation":16,"imageIndex":25},{"imageOffset":76844,"symbol":"_dispatch_main_queue_drain","symbolLocation":1276,"imageIndex":25},{"imageOffset":75552,"symbol":"_dispatch_main_queue_callback_4CF","symbolLocation":40,"imageIndex":25},{"imageOffset":589228,"symbol":"__CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__","symbolLocation":12,"imageIndex":26},{"imageOffset":566024,"symbol":"__CFRunLoopRun","symbolLocation":1944,"imageIndex":26},{"imageOffset":562932,"symbol":"CFRunLoopRunSpecific","symbolLocation":552,"imageIndex":26},{"imageOffset":15120,"symbol":"GSEventRunModal","symbolLocation":160,"imageIndex":27},{"imageOffset":15067612,"symbol":"-[UIApplication _run]","symbolLocation":796,"imageIndex":28},{"imageOffset":15084500,"symbol":"UIApplicationMain","symbolLocation":124,"imageIndex":28},{"imageOffset":2323252,"imageIndex":28},{"imageOffset":9528,"sourceFile":"\/<compiler-generated>","symbol":"static UIApplicationDelegate.main()","symbolLocation":128,"imageIndex":2},{"imageOffset":9384,"sourceFile":"\/<compiler-generated>","symbol":"static AppDelegate.$main()","symbolLocation":44,"imageIndex":2},{"imageOffset":9652,"sourceFile":"\/<compiler-generated>","symbol":"__debug_main_executable_dylib_entry_point","symbolLocation":28,"imageIndex":2},{"imageOffset":4372616208,"imageIndex":29},{"imageOffset":36180,"symbol":"start","symbolLocation":7184,"imageIndex":0}],
+  "faultingThread" : 0,
+  "threads" : [{"triggered":true,"id":14709271,"threadState":{"x":[{"value":0},{"value":0},{"value":0},{"value":0},{"value":6445272535},{"value":6096030816},{"value":110},{"value":0},{"value":4374486592,"symbolLocation":0,"symbol":"_main_thread"},{"value":8926013846405561194},{"value":81},{"value":11},{"value":11},{"value":6449536462},{"value":2043},{"value":4037021795},{"value":328},{"value":4039116910},{"value":0},{"value":6},{"value":259},{"value":4374486816,"symbolLocation":224,"symbol":"_main_thread"},{"value":984831},{"value":276},{"value":105553140712192},{"value":105553140712192},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379927208},"cpsr":{"value":1073741824},"fp":{"value":6096030672},"sp":{"value":6096030640},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377495644,"matchesCrashFrame":1},"far":{"value":0}},"queue":"com.apple.main-thread","frames":[{"imageOffset":34908,"symbol":"__pthread_kill","symbolLocation":8,"imageIndex":18},{"imageOffset":25256,"symbol":"pthread_kill","symbolLocation":264,"imageIndex":19},{"imageOffset":472300,"symbol":"abort","symbolLocation":104,"imageIndex":22},{"imageOffset":86272,"symbol":"abort_message","symbolLocation":128,"imageIndex":23},{"imageOffset":19204,"symbol":"demangling_terminate_handler()","symbolLocation":300,"imageIndex":23},{"imageOffset":30892,"symbol":"_objc_terminate()","symbolLocation":124,"imageIndex":24},{"imageOffset":83160,"symbol":"std::__terminate(void (*)())","symbolLocation":12,"imageIndex":23},{"imageOffset":83080,"symbol":"std::terminate()","symbolLocation":52,"imageIndex":23},{"imageOffset":15388,"symbol":"_dispatch_client_callout","symbolLocation":36,"imageIndex":25},{"imageOffset":76844,"symbol":"_dispatch_main_queue_drain","symbolLocation":1276,"imageIndex":25},{"imageOffset":75552,"symbol":"_dispatch_main_queue_callback_4CF","symbolLocation":40,"imageIndex":25},{"imageOffset":589228,"symbol":"__CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__","symbolLocation":12,"imageIndex":26},{"imageOffset":566024,"symbol":"__CFRunLoopRun","symbolLocation":1944,"imageIndex":26},{"imageOffset":562932,"symbol":"CFRunLoopRunSpecific","symbolLocation":552,"imageIndex":26},{"imageOffset":15120,"symbol":"GSEventRunModal","symbolLocation":160,"imageIndex":27},{"imageOffset":15067612,"symbol":"-[UIApplication _run]","symbolLocation":796,"imageIndex":28},{"imageOffset":15084500,"symbol":"UIApplicationMain","symbolLocation":124,"imageIndex":28},{"imageOffset":2323252,"imageIndex":28},{"imageOffset":9528,"sourceFile":"\/<compiler-generated>","symbol":"static UIApplicationDelegate.main()","symbolLocation":128,"imageIndex":2},{"imageOffset":9384,"sourceFile":"\/<compiler-generated>","symbol":"static AppDelegate.$main()","symbolLocation":44,"imageIndex":2},{"imageOffset":9652,"sourceFile":"\/<compiler-generated>","symbol":"__debug_main_executable_dylib_entry_point","symbolLocation":28,"imageIndex":2},{"imageOffset":4372616208,"imageIndex":29},{"imageOffset":36180,"symbol":"start","symbolLocation":7184,"imageIndex":0}]},{"id":14709390,"frames":[],"threadState":{"x":[{"value":6096596992},{"value":6163},{"value":6096060416},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6096596992},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709391,"frames":[],"threadState":{"x":[{"value":6097170432},{"value":3587},{"value":6096633856},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6097170432},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709392,"frames":[],"threadState":{"x":[{"value":6097743872},{"value":5379},{"value":6097207296},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6097743872},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709393,"frames":[],"threadState":{"x":[{"value":6098317312},{"value":9475},{"value":6097780736},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6098317312},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709394,"name":"com.apple.uikit.eventfetch-thread","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":64884070940672},{"value":0},{"value":64884070940672},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":15107},{"value":3072},{"value":18446744073709551569},{"value":2},{"value":0},{"value":4294967295},{"value":2},{"value":64884070940672},{"value":0},{"value":64884070940672},{"value":6098886008},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4377532684},"cpsr":{"value":0},"fp":{"value":6098885856},"sp":{"value":6098885776},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377463664},"far":{"value":0}},"frames":[{"imageOffset":2928,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":18},{"imageOffset":71948,"symbol":"mach_msg2_internal","symbolLocation":72,"imageIndex":18},{"imageOffset":35856,"symbol":"mach_msg_overwrite","symbolLocation":480,"imageIndex":18},{"imageOffset":3812,"symbol":"mach_msg","symbolLocation":20,"imageIndex":18},{"imageOffset":588496,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":156,"imageIndex":26},{"imageOffset":565240,"symbol":"__CFRunLoopRun","symbolLocation":1160,"imageIndex":26},{"imageOffset":562932,"symbol":"CFRunLoopRunSpecific","symbolLocation":552,"imageIndex":26},{"imageOffset":7623736,"symbol":"-[NSRunLoop(NSRunLoop) runMode:beforeDate:]","symbolLocation":208,"imageIndex":30},{"imageOffset":7624280,"symbol":"-[NSRunLoop(NSRunLoop) runUntilDate:]","symbolLocation":60,"imageIndex":30},{"imageOffset":15778436,"symbol":"-[UIEventFetcher threadMain]","symbolLocation":404,"imageIndex":28},{"imageOffset":7783040,"symbol":"__NSThread__start__","symbolLocation":720,"imageIndex":30},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709395,"frames":[],"threadState":{"x":[{"value":6099464192},{"value":12547},{"value":6098927616},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6099464192},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709397,"frames":[],"threadState":{"x":[{"value":6100037632},{"value":20755},{"value":6099501056},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6100037632},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709398,"frames":[],"threadState":{"x":[{"value":6100611072},{"value":19459},{"value":6100074496},{"value":0},{"value":409604},{"value":18446744073709551615},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":0},"cpsr":{"value":0},"fp":{"value":0},"sp":{"value":6100611072},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4379908484},"far":{"value":0}}},{"id":14709401,"name":"io.flutter.1.raster","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":129755256979456},{"value":0},{"value":129755256979456},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":30211},{"value":3072},{"value":18446744073709551569},{"value":2199023256066},{"value":0},{"value":4294967295},{"value":2},{"value":129755256979456},{"value":0},{"value":129755256979456},{"value":6102753272},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4377532684},"cpsr":{"value":0},"fp":{"value":6102753120},"sp":{"value":6102753040},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377463664},"far":{"value":0}},"frames":[{"imageOffset":2928,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":18},{"imageOffset":71948,"symbol":"mach_msg2_internal","symbolLocation":72,"imageIndex":18},{"imageOffset":35856,"symbol":"mach_msg_overwrite","symbolLocation":480,"imageIndex":18},{"imageOffset":3812,"symbol":"mach_msg","symbolLocation":20,"imageIndex":18},{"imageOffset":588496,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":156,"imageIndex":26},{"imageOffset":565240,"symbol":"__CFRunLoopRun","symbolLocation":1160,"imageIndex":26},{"imageOffset":562932,"symbol":"CFRunLoopRunSpecific","symbolLocation":552,"imageIndex":26},{"imageOffset":643772,"symbol":"fml::MessageLoopDarwin::Run()","symbolLocation":92,"imageIndex":16},{"imageOffset":613764,"symbol":"fml::MessageLoopImpl::DoRun()","symbolLocation":44,"imageIndex":16},{"imageOffset":637284,"symbol":"std::_fl::__function::__func<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0, std::_fl::allocator<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0>, void ()>::operator()()","symbolLocation":184,"imageIndex":16},{"imageOffset":636456,"symbol":"fml::ThreadHandle::ThreadHandle(std::_fl::function<void ()>&&)::$_0::__invoke(void*)","symbolLocation":36,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709402,"name":"io.flutter.1.io","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":122058675585024},{"value":0},{"value":122058675585024},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":28419},{"value":3072},{"value":18446744073709551569},{"value":2},{"value":0},{"value":4294967295},{"value":2},{"value":122058675585024},{"value":0},{"value":122058675585024},{"value":6104899576},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4377532684},"cpsr":{"value":0},"fp":{"value":6104899424},"sp":{"value":6104899344},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377463664},"far":{"value":0}},"frames":[{"imageOffset":2928,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":18},{"imageOffset":71948,"symbol":"mach_msg2_internal","symbolLocation":72,"imageIndex":18},{"imageOffset":35856,"symbol":"mach_msg_overwrite","symbolLocation":480,"imageIndex":18},{"imageOffset":3812,"symbol":"mach_msg","symbolLocation":20,"imageIndex":18},{"imageOffset":588496,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":156,"imageIndex":26},{"imageOffset":565240,"symbol":"__CFRunLoopRun","symbolLocation":1160,"imageIndex":26},{"imageOffset":562932,"symbol":"CFRunLoopRunSpecific","symbolLocation":552,"imageIndex":26},{"imageOffset":643772,"symbol":"fml::MessageLoopDarwin::Run()","symbolLocation":92,"imageIndex":16},{"imageOffset":613764,"symbol":"fml::MessageLoopImpl::DoRun()","symbolLocation":44,"imageIndex":16},{"imageOffset":637284,"symbol":"std::_fl::__function::__func<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0, std::_fl::allocator<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0>, void ()>::operator()()","symbolLocation":184,"imageIndex":16},{"imageOffset":636456,"symbol":"fml::ThreadHandle::ThreadHandle(std::_fl::function<void ()>&&)::$_0::__invoke(void*)","symbolLocation":36,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709403,"name":"io.flutter.1.profiler","threadState":{"x":[{"value":268451845},{"value":21592279046},{"value":8589934592},{"value":109964047679488},{"value":0},{"value":109964047679488},{"value":2},{"value":4294967295},{"value":0},{"value":17179869184},{"value":0},{"value":2},{"value":0},{"value":0},{"value":25603},{"value":3072},{"value":18446744073709551569},{"value":2},{"value":0},{"value":4294967295},{"value":2},{"value":109964047679488},{"value":0},{"value":109964047679488},{"value":6107045880},{"value":8589934592},{"value":21592279046},{"value":18446744073709550527},{"value":4412409862}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4377532684},"cpsr":{"value":0},"fp":{"value":6107045728},"sp":{"value":6107045648},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377463664},"far":{"value":0}},"frames":[{"imageOffset":2928,"symbol":"mach_msg2_trap","symbolLocation":8,"imageIndex":18},{"imageOffset":71948,"symbol":"mach_msg2_internal","symbolLocation":72,"imageIndex":18},{"imageOffset":35856,"symbol":"mach_msg_overwrite","symbolLocation":480,"imageIndex":18},{"imageOffset":3812,"symbol":"mach_msg","symbolLocation":20,"imageIndex":18},{"imageOffset":588496,"symbol":"__CFRunLoopServiceMachPort","symbolLocation":156,"imageIndex":26},{"imageOffset":565240,"symbol":"__CFRunLoopRun","symbolLocation":1160,"imageIndex":26},{"imageOffset":562932,"symbol":"CFRunLoopRunSpecific","symbolLocation":552,"imageIndex":26},{"imageOffset":643772,"symbol":"fml::MessageLoopDarwin::Run()","symbolLocation":92,"imageIndex":16},{"imageOffset":613764,"symbol":"fml::MessageLoopImpl::DoRun()","symbolLocation":44,"imageIndex":16},{"imageOffset":637284,"symbol":"std::_fl::__function::__func<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0, std::_fl::allocator<fml::Thread::Thread(std::_fl::function<void (fml::Thread::ThreadConfig const&)> const&, fml::Thread::ThreadConfig const&)::$_0>, void ()>::operator()()","symbolLocation":184,"imageIndex":16},{"imageOffset":636456,"symbol":"fml::ThreadHandle::ThreadHandle(std::_fl::function<void ()>&&)::$_0::__invoke(void*)","symbolLocation":36,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709404,"name":"io.worker.1","threadState":{"x":[{"value":4},{"value":0},{"value":1024},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6107622888},{"value":0},{"value":256},{"value":1099511628034},{"value":1099511628034},{"value":256},{"value":0},{"value":1099511628032},{"value":305},{"value":352},{"value":0},{"value":4385182664},{"value":4385182728},{"value":6107623648},{"value":0},{"value":0},{"value":1024},{"value":1025},{"value":1280},{"value":6107623128},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929204},"cpsr":{"value":1610612736},"fp":{"value":6107623008},"sp":{"value":6107622864},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27252,"symbol":"_pthread_cond_wait","symbolLocation":976,"imageIndex":19},{"imageOffset":451084,"symbol":"std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&)","symbolLocation":24,"imageIndex":16},{"imageOffset":599336,"symbol":"fml::ConcurrentMessageLoop::WorkerMain()","symbolLocation":140,"imageIndex":16},{"imageOffset":601040,"symbol":"void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*)","symbolLocation":192,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709405,"name":"io.worker.2","threadState":{"x":[{"value":4},{"value":0},{"value":1024},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6108196328},{"value":0},{"value":256},{"value":1099511628034},{"value":1099511628034},{"value":256},{"value":0},{"value":1099511628032},{"value":305},{"value":353},{"value":0},{"value":4385182664},{"value":4385182728},{"value":6108197088},{"value":0},{"value":0},{"value":1024},{"value":1024},{"value":1536},{"value":6108196568},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929204},"cpsr":{"value":1610612736},"fp":{"value":6108196448},"sp":{"value":6108196304},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27252,"symbol":"_pthread_cond_wait","symbolLocation":976,"imageIndex":19},{"imageOffset":451084,"symbol":"std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&)","symbolLocation":24,"imageIndex":16},{"imageOffset":599336,"symbol":"fml::ConcurrentMessageLoop::WorkerMain()","symbolLocation":140,"imageIndex":16},{"imageOffset":601040,"symbol":"void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*)","symbolLocation":192,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709406,"name":"io.worker.3","threadState":{"x":[{"value":4},{"value":0},{"value":1024},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6108769768},{"value":0},{"value":512},{"value":2199023256066},{"value":2199023256066},{"value":512},{"value":0},{"value":2199023256064},{"value":305},{"value":354},{"value":0},{"value":4385182664},{"value":4385182728},{"value":6108770528},{"value":0},{"value":0},{"value":1024},{"value":1024},{"value":1792},{"value":6108770008},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929204},"cpsr":{"value":1610612736},"fp":{"value":6108769888},"sp":{"value":6108769744},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27252,"symbol":"_pthread_cond_wait","symbolLocation":976,"imageIndex":19},{"imageOffset":451084,"symbol":"std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&)","symbolLocation":24,"imageIndex":16},{"imageOffset":599336,"symbol":"fml::ConcurrentMessageLoop::WorkerMain()","symbolLocation":140,"imageIndex":16},{"imageOffset":601040,"symbol":"void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*)","symbolLocation":192,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709407,"name":"io.worker.4","threadState":{"x":[{"value":260},{"value":0},{"value":1024},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6109343208},{"value":0},{"value":512},{"value":2199023256066},{"value":2199023256066},{"value":512},{"value":0},{"value":2199023256064},{"value":305},{"value":355},{"value":0},{"value":4385182664},{"value":4385182728},{"value":6109343968},{"value":0},{"value":0},{"value":1024},{"value":1024},{"value":2048},{"value":6109343448},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929204},"cpsr":{"value":1610612736},"fp":{"value":6109343328},"sp":{"value":6109343184},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27252,"symbol":"_pthread_cond_wait","symbolLocation":976,"imageIndex":19},{"imageOffset":451084,"symbol":"std::_fl::condition_variable::wait(std::_fl::unique_lock<std::_fl::mutex>&)","symbolLocation":24,"imageIndex":16},{"imageOffset":599336,"symbol":"fml::ConcurrentMessageLoop::WorkerMain()","symbolLocation":140,"imageIndex":16},{"imageOffset":601040,"symbol":"void* std::_fl::__thread_proxy[abi:nn210000]<std::_fl::tuple<std::_fl::unique_ptr<std::_fl::__thread_struct, std::_fl::default_delete<std::_fl::__thread_struct>>, fml::ConcurrentMessageLoop::ConcurrentMessageLoop(unsigned long)::$_0>>(void*)","symbolLocation":192,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709408,"name":"dart:io EventHandler","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":6110440728},{"value":16},{"value":6110439688},{"value":93458488382976},{"value":0},{"value":170000000},{"value":7},{"value":6443492832,"symbolLocation":284,"symbol":"clock_gettime_nsec_np"},{"value":0},{"value":105553181298688},{"value":445027611},{"value":444917975},{"value":21760},{"value":363},{"value":105553156152232},{"value":0},{"value":105553156150336},{"value":6110439688},{"value":67108864},{"value":2147483647},{"value":274877907},{"value":4294966296},{"value":1000000},{"value":444910904},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4424790908},"cpsr":{"value":536870912},"fp":{"value":6110441328},"sp":{"value":6110439664},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377486940},"far":{"value":0}},"frames":[{"imageOffset":26204,"symbol":"kevent","symbolLocation":8,"imageIndex":18},{"imageOffset":5174140,"symbol":"dart::bin::EventHandlerImplementation::EventHandlerEntry(unsigned long)","symbolLocation":304,"imageIndex":16},{"imageOffset":5289056,"symbol":"dart::bin::ThreadStart(void*)","symbolLocation":92,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709411,"name":"Dart Profiler ThreadInterrupter","threadState":{"x":[{"value":260},{"value":0},{"value":207616},{"value":0},{"value":0},{"value":160},{"value":0},{"value":0},{"value":6111537688},{"value":0},{"value":256},{"value":1099511628034},{"value":1099511628034},{"value":256},{"value":0},{"value":1099511628032},{"value":305},{"value":105553162563424},{"value":0},{"value":105553162563328},{"value":105553162563400},{"value":6111539424},{"value":0},{"value":0},{"value":207616},{"value":212737},{"value":212992},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929204},"cpsr":{"value":1610612736},"fp":{"value":6111537808},"sp":{"value":6111537664},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27252,"symbol":"_pthread_cond_wait","symbolLocation":976,"imageIndex":19},{"imageOffset":5606524,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":128,"imageIndex":16},{"imageOffset":7059000,"symbol":"dart::ThreadInterrupter::ThreadMain(unsigned long)","symbolLocation":336,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709412,"name":"Dart Profiler SampleBlockProcessor","threadState":{"x":[{"value":260},{"value":0},{"value":256},{"value":0},{"value":0},{"value":160},{"value":0},{"value":100000000},{"value":8193},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":105553156115744},{"value":0},{"value":105553162563456},{"value":105553162563528},{"value":1},{"value":100000000},{"value":0},{"value":256},{"value":8193},{"value":8448},{"value":0},{"value":0}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6112635536},"sp":{"value":6112635392},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":6772944,"symbol":"dart::SampleBlockProcessor::ThreadMain(unsigned long)","symbolLocation":292,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709413,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":19200},{"value":0},{"value":0},{"value":160},{"value":5},{"value":0},{"value":19201},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":18},{"value":0},{"value":4383100360},{"value":105553156170416},{"value":1},{"value":0},{"value":5},{"value":19200},{"value":19201},{"value":19456},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6113733184},"sp":{"value":6113733040},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":7062488,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":512,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709416,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":1792},{"value":0},{"value":0},{"value":160},{"value":5},{"value":0},{"value":1793},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":14},{"value":0},{"value":4413478056},{"value":105553156147600},{"value":1},{"value":0},{"value":5},{"value":1792},{"value":1793},{"value":2048},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6114830912},"sp":{"value":6114830768},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":7062488,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":512,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709417,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":22016},{"value":0},{"value":0},{"value":160},{"value":61},{"value":0},{"value":22017},{"value":0},{"value":768},{"value":3298534884098},{"value":3298534884098},{"value":768},{"value":0},{"value":3298534884096},{"value":305},{"value":111},{"value":0},{"value":4384120600},{"value":105553156152208},{"value":1},{"value":0},{"value":61},{"value":22016},{"value":22017},{"value":22272},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6115928560},"sp":{"value":6115928416},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":5995788,"symbol":"dart::MutatorThreadPool::OnEnterIdleLocked(dart::MutexLocker*, dart::ThreadPool::Worker*)","symbolLocation":156,"imageIndex":16},{"imageOffset":7062100,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":124,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709425,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":12544},{"value":0},{"value":0},{"value":160},{"value":5},{"value":0},{"value":12545},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":211},{"value":0},{"value":4383100360},{"value":105553156140720},{"value":1},{"value":0},{"value":5},{"value":12544},{"value":12545},{"value":12800},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6117026368},"sp":{"value":6117026224},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":7062488,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":512,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709444,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":256},{"value":0},{"value":0},{"value":160},{"value":61},{"value":0},{"value":257},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":388},{"value":0},{"value":4385271112},{"value":105553156169936},{"value":1},{"value":0},{"value":61},{"value":256},{"value":257},{"value":512},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6118124016},"sp":{"value":6118123872},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":5995788,"symbol":"dart::MutatorThreadPool::OnEnterIdleLocked(dart::MutexLocker*, dart::ThreadPool::Worker*)","symbolLocation":156,"imageIndex":16},{"imageOffset":7062100,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":124,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709445,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":0},{"value":0},{"value":0},{"value":160},{"value":5},{"value":0},{"value":1},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":4128929968},{"value":0},{"value":4385271112},{"value":105553156181808},{"value":1},{"value":0},{"value":5},{"value":0},{"value":1},{"value":256},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6119221824},"sp":{"value":6119221680},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":7062488,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":512,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709471,"name":"DartWorker","threadState":{"x":[{"value":260},{"value":0},{"value":256},{"value":0},{"value":0},{"value":160},{"value":4},{"value":731756000},{"value":257},{"value":0},{"value":0},{"value":2},{"value":2},{"value":0},{"value":0},{"value":0},{"value":305},{"value":459},{"value":0},{"value":4383100360},{"value":105553156146160},{"value":1},{"value":731756000},{"value":4},{"value":256},{"value":257},{"value":512},{"value":4452040704,"symbolLocation":6224,"symbol":"dart::Symbols::symbol_handles_"},{"value":1000}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379929248},"cpsr":{"value":2684354560},"fp":{"value":6120319552},"sp":{"value":6120319408},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377477152},"far":{"value":0}},"frames":[{"imageOffset":16416,"symbol":"__psynch_cvwait","symbolLocation":8,"imageIndex":18},{"imageOffset":27296,"symbol":"_pthread_cond_wait","symbolLocation":1020,"imageIndex":19},{"imageOffset":5606508,"symbol":"dart::ConditionVariable::WaitMicros(dart::Mutex*, long long)","symbolLocation":112,"imageIndex":16},{"imageOffset":7062488,"symbol":"dart::ThreadPool::WorkerLoop(dart::ThreadPool::Worker*)","symbolLocation":512,"imageIndex":16},{"imageOffset":7062840,"symbol":"dart::ThreadPool::Worker::Main(unsigned long)","symbolLocation":116,"imageIndex":16},{"imageOffset":6753448,"symbol":"dart::ThreadStart(void*)","symbolLocation":208,"imageIndex":16},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709473,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140483392},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709473},{"value":1282},{"value":1538},{"value":2043},{"value":3641116694},{"value":301},{"value":3643211823},{"value":0},{"value":105553140635392},{"value":1538},{"value":0},{"value":105553140635416},{"value":14709473},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6122466624},"sp":{"value":6122466576},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709474,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140514880},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709474},{"value":514},{"value":770},{"value":2043},{"value":3720841218},{"value":301},{"value":3722936367},{"value":0},{"value":105553140635392},{"value":770},{"value":0},{"value":105553140635416},{"value":14709474},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6124612928},"sp":{"value":6124612880},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709475,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":256},{"value":14709479},{"value":8352},{"value":0},{"value":105553129196016},{"value":256},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709475},{"value":1099511630594},{"value":1099511630850},{"value":2043},{"value":2294886454},{"value":301},{"value":2296981553},{"value":0},{"value":105553140635392},{"value":1099511630850},{"value":256},{"value":105553140635416},{"value":14709475},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6126759232},"sp":{"value":6126759184},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709476,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140413312},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709476},{"value":770},{"value":1026},{"value":2043},{"value":4215310543},{"value":301},{"value":4217405684},{"value":0},{"value":105553140635392},{"value":1026},{"value":0},{"value":105553140635416},{"value":14709476},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6128905536},"sp":{"value":6128905488},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709477,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140667968},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709477},{"value":1794},{"value":2050},{"value":2043},{"value":2758185050},{"value":301},{"value":2760280155},{"value":0},{"value":105553140635392},{"value":2050},{"value":0},{"value":105553140635416},{"value":14709477},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6131051840},"sp":{"value":6131051792},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709478,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140415680},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709478},{"value":1538},{"value":1794},{"value":2043},{"value":4217405684},{"value":301},{"value":4219500742},{"value":0},{"value":105553140635392},{"value":1794},{"value":0},{"value":105553140635416},{"value":14709478},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6133198144},"sp":{"value":6133198096},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709479,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":512},{"value":14709481},{"value":8352},{"value":32},{"value":0},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709479},{"value":2199023258626},{"value":2199023258882},{"value":1329602806},{"value":1327503646},{"value":301},{"value":246},{"value":0},{"value":105553140635392},{"value":2199023258882},{"value":512},{"value":105553140635416},{"value":14709479},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6135344448},"sp":{"value":6135344400},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709480,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140668608},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709480},{"value":1026},{"value":1282},{"value":2043},{"value":2756089956},{"value":301},{"value":2758185050},{"value":0},{"value":105553140635392},{"value":1282},{"value":0},{"value":105553140635416},{"value":14709480},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6137490752},"sp":{"value":6137490704},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709481,"name":"isarworker","threadState":{"x":[{"value":14},{"value":64515},{"value":171798697235},{"value":192427419763203},{"value":14680198217728},{"value":192427419762688},{"value":48},{"value":0},{"value":0},{"value":1},{"value":4},{"value":2},{"value":0},{"value":0},{"value":2043},{"value":3964072042},{"value":18446744073709551580},{"value":3966167174},{"value":0},{"value":105553151012560},{"value":105553151012496},{"value":18446744073709551615},{"value":105553140667840},{"value":4294967295},{"value":18446744073709551615},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":6444011712},"cpsr":{"value":1610612736},"fp":{"value":6139636912},"sp":{"value":6139636896},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377463532},"far":{"value":0}},"frames":[{"imageOffset":2796,"symbol":"semaphore_wait_trap","symbolLocation":8,"imageIndex":18},{"imageOffset":16576,"symbol":"_dispatch_sema4_wait","symbolLocation":24,"imageIndex":25},{"imageOffset":18228,"symbol":"_dispatch_semaphore_wait_slow","symbolLocation":128,"imageIndex":25},{"imageOffset":608280,"symbol":"std::sync::mpmc::context::Context::with::_$u7b$$u7b$closure$u7d$$u7d$::h65c9b68c11c8d53b","symbolLocation":508,"imageIndex":13},{"imageOffset":602912,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":604,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709482,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140668032},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709482},{"value":2050},{"value":2306},{"value":2043},{"value":2760280155},{"value":301},{"value":2762375252},{"value":0},{"value":105553140635392},{"value":2306},{"value":0},{"value":105553140635416},{"value":14709482},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6141783360},"sp":{"value":6141783312},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709483,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140636992},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709483},{"value":2306},{"value":2562},{"value":2043},{"value":3664003190},{"value":301},{"value":3666098270},{"value":0},{"value":105553140635392},{"value":2562},{"value":0},{"value":105553140635416},{"value":14709483},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6143929664},"sp":{"value":6143929616},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]},{"id":14709484,"name":"isarworker","threadState":{"x":[{"value":4},{"value":0},{"value":0},{"value":14709475},{"value":8352},{"value":0},{"value":105553140635456},{"value":0},{"value":105553140635431},{"value":105553140635424},{"value":105553140635416},{"value":14709484},{"value":2562},{"value":2818},{"value":2043},{"value":3666098270},{"value":301},{"value":3668193413},{"value":0},{"value":105553140635392},{"value":2818},{"value":0},{"value":105553140635416},{"value":14709484},{"value":105553140635424},{"value":6},{"value":24},{"value":105553169859536},{"value":4379086848,"symbolLocation":64,"symbol":"_OBJC_PROTOCOL_$_NSObject"}],"flavor":"ARM_THREAD_STATE64","lr":{"value":4379917004},"cpsr":{"value":1610612736},"fp":{"value":6146075968},"sp":{"value":6146075920},"esr":{"value":1442840704,"description":"(Syscall)"},"pc":{"value":4377474416},"far":{"value":0}},"frames":[{"imageOffset":13680,"symbol":"__psynch_mutexwait","symbolLocation":8,"imageIndex":18},{"imageOffset":15052,"symbol":"_pthread_mutex_firstfit_lock_wait","symbolLocation":80,"imageIndex":19},{"imageOffset":5812,"symbol":"_pthread_mutex_firstfit_lock_slow","symbolLocation":216,"imageIndex":19},{"imageOffset":602492,"symbol":"std::sys_common::backtrace::__rust_begin_short_backtrace::hb18d1d9b670b1ab6","symbolLocation":184,"imageIndex":13},{"imageOffset":601868,"symbol":"core::ops::function::FnOnce::call_once$u7b$$u7b$vtable.shim$u7d$$u7d$::h17f5d4742893cb70","symbolLocation":232,"imageIndex":13},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::h7feb3f6e74ac9510","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":12,"sourceLine":1988,"sourceFile":"boxed.rs"},{"symbol":"_$LT$alloc..boxed..Box$LT$F$C$A$GT$$u20$as$u20$core..ops..function..FnOnce$LT$Args$GT$$GT$::call_once::ha7233cf14de205e2","inline":true,"imageIndex":13,"imageOffset":600720,"symbolLocation":16,"sourceLine":1988,"sourceFile":"boxed.rs"},{"imageOffset":600720,"sourceLine":108,"sourceFile":"thread.rs","symbol":"std::sys::unix::thread::Thread::new::thread_start::hf11cd86b597dfd2f","imageIndex":13,"symbolLocation":36},{"imageOffset":26028,"symbol":"_pthread_start","symbolLocation":104,"imageIndex":19},{"imageOffset":6552,"symbol":"thread_start","symbolLocation":8,"imageIndex":19}]}],
+  "usedImages" : [
+  {
+    "source" : "P",
+    "arch" : "arm64e",
+    "base" : 4373774336,
+    "size" : 655360,
+    "uuid" : "0975afba-c46b-364c-bd84-a75daa9e455a",
+    "path" : "\/usr\/lib\/dyld",
+    "name" : "dyld"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4370841600,
+    "CFBundleShortVersionString" : "1.0.0",
+    "CFBundleIdentifier" : "com.example.aiCoachingApp",
+    "size" : 16384,
+    "uuid" : "64ba2af5-b524-3a9a-b982-65edba6e29b9",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Runner",
+    "name" : "Runner",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4371152896,
+    "size" : 81920,
+    "uuid" : "171c54fd-c341-325a-8edc-04e34d741df4",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Runner.debug.dylib",
+    "name" : "Runner.debug.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4371775488,
+    "CFBundleShortVersionString" : "1.7.6",
+    "CFBundleIdentifier" : "org.cocoapods.AppAuth",
+    "size" : 163840,
+    "uuid" : "d4864181-a5de-38d3-b16b-bf62558e4dc7",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/AppAuth.framework\/AppAuth",
+    "name" : "AppAuth",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4372152320,
+    "CFBundleShortVersionString" : "11.2.0",
+    "CFBundleIdentifier" : "org.cocoapods.AppCheckCore",
+    "size" : 147456,
+    "uuid" : "a8f81a84-e70e-334d-b0a6-25cc5ab0aed3",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/AppCheckCore.framework\/AppCheckCore",
+    "name" : "AppCheckCore",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4370939904,
+    "CFBundleShortVersionString" : "2.4.0",
+    "CFBundleIdentifier" : "org.cocoapods.FBLPromises",
+    "size" : 81920,
+    "uuid" : "e8de2d5f-4897-3c53-a4fe-e3582b71be57",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/FBLPromises.framework\/FBLPromises",
+    "name" : "FBLPromises",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4375035904,
+    "CFBundleShortVersionString" : "4.1.1",
+    "CFBundleIdentifier" : "org.cocoapods.GTMAppAuth",
+    "size" : 147456,
+    "uuid" : "81077340-3b80-360f-a97f-885e606769cb",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/GTMAppAuth.framework\/GTMAppAuth",
+    "name" : "GTMAppAuth",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4376068096,
+    "CFBundleShortVersionString" : "3.5.0",
+    "CFBundleIdentifier" : "org.cocoapods.GTMSessionFetcher",
+    "size" : 360448,
+    "uuid" : "725ba4e4-874b-37e3-abec-38f24295b186",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/GTMSessionFetcher.framework\/GTMSessionFetcher",
+    "name" : "GTMSessionFetcher",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4373430272,
+    "CFBundleShortVersionString" : "8.0.0",
+    "CFBundleIdentifier" : "org.cocoapods.GoogleSignIn",
+    "size" : 147456,
+    "uuid" : "678413bb-fff1-3602-90ec-334d04c04660",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/GoogleSignIn.framework\/GoogleSignIn",
+    "name" : "GoogleSignIn",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4371546112,
+    "CFBundleShortVersionString" : "8.1.0",
+    "CFBundleIdentifier" : "org.cocoapods.GoogleUtilities",
+    "size" : 49152,
+    "uuid" : "092677cb-801b-314a-9e97-d968f88163d6",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/GoogleUtilities.framework\/GoogleUtilities",
+    "name" : "GoogleUtilities",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4371382272,
+    "CFBundleShortVersionString" : "6.4.1",
+    "CFBundleIdentifier" : "org.cocoapods.app-links",
+    "size" : 49152,
+    "uuid" : "10feab29-6285-323c-9ef6-39abd2d08957",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/app_links.framework\/app_links",
+    "name" : "app_links",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4375609344,
+    "CFBundleShortVersionString" : "0.0.1",
+    "CFBundleIdentifier" : "org.cocoapods.connectivity-plus",
+    "size" : 49152,
+    "uuid" : "ffd5b381-b876-3c25-ad01-a84350717998",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/connectivity_plus.framework\/connectivity_plus",
+    "name" : "connectivity_plus",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4375789568,
+    "CFBundleShortVersionString" : "0.0.1",
+    "CFBundleIdentifier" : "org.cocoapods.flutter-local-notifications",
+    "size" : 65536,
+    "uuid" : "2c23df42-2e09-361e-8c8c-7094540cd726",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/flutter_local_notifications.framework\/flutter_local_notifications",
+    "name" : "flutter_local_notifications",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4378050560,
+    "CFBundleShortVersionString" : "1.0.0",
+    "CFBundleIdentifier" : "org.cocoapods.isar-flutter-libs",
+    "size" : 999424,
+    "uuid" : "d3848ab4-0efa-3140-8197-c293730d7da2",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/isar_flutter_libs.framework\/isar_flutter_libs",
+    "name" : "isar_flutter_libs",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4376969216,
+    "CFBundleShortVersionString" : "0.0.1",
+    "CFBundleIdentifier" : "org.cocoapods.shared-preferences-foundation",
+    "size" : 81920,
+    "uuid" : "0e82b753-4599-32f3-94df-1b07fe1e0765",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/shared_preferences_foundation.framework\/shared_preferences_foundation",
+    "name" : "shared_preferences_foundation",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4377214976,
+    "CFBundleShortVersionString" : "0.0.1",
+    "CFBundleIdentifier" : "org.cocoapods.url-launcher-ios",
+    "size" : 81920,
+    "uuid" : "bf20e8e8-ab4d-35ca-a725-8022f5c10760",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/url_launcher_ios.framework\/url_launcher_ios",
+    "name" : "url_launcher_ios",
+    "CFBundleVersion" : "1"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4419616768,
+    "CFBundleShortVersionString" : "1.0",
+    "CFBundleIdentifier" : "io.flutter.flutter",
+    "size" : 31719424,
+    "uuid" : "4c4c44e6-5555-3144-a1c2-99c2fdd23ee3",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/Flutter.framework\/Flutter",
+    "name" : "Flutter",
+    "CFBundleVersion" : "1.0"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4375412736,
+    "size" : 32768,
+    "uuid" : "de4033bb-4a6b-317a-bda6-b3a408656844",
+    "path" : "\/usr\/lib\/system\/libsystem_platform.dylib",
+    "name" : "libsystem_platform.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4377460736,
+    "size" : 245760,
+    "uuid" : "8f54f386-9b41-376a-9ba3-9423bbabb1b6",
+    "path" : "\/usr\/lib\/system\/libsystem_kernel.dylib",
+    "name" : "libsystem_kernel.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4379901952,
+    "size" : 65536,
+    "uuid" : "48ca2121-5ca2-3e04-bc91-a33151256e77",
+    "path" : "\/usr\/lib\/system\/libsystem_pthread.dylib",
+    "name" : "libsystem_pthread.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4380459008,
+    "size" : 49152,
+    "uuid" : "a31fa6bc-f00c-3232-9da8-4e5d7922ed9a",
+    "path" : "\/Volumes\/VOLUME\/*\/libobjc-trampolines.dylib",
+    "name" : "libobjc-trampolines.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 4689477632,
+    "CFBundleShortVersionString" : "1.0",
+    "CFBundleIdentifier" : "io.flutter.flutter.native-assets.objective-c",
+    "size" : 81920,
+    "uuid" : "5ff5a827-d955-34d8-812f-2e1bfb1a5ef9",
+    "path" : "\/Users\/USER\/Library\/Developer\/CoreSimulator\/Devices\/E990772F-6B4E-493A-8F00-2981A44A2FED\/data\/Containers\/Bundle\/Application\/C9AF9C4D-E2DE-451F-8269-53636C89F423\/Runner.app\/Frameworks\/objective_c.framework\/objective_c",
+    "name" : "objective_c",
+    "CFBundleVersion" : "1.0"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6443487232,
+    "size" : 507892,
+    "uuid" : "3e34edd7-d111-3f74-bacd-9a4e955d66e6",
+    "path" : "\/Volumes\/VOLUME\/*\/libsystem_c.dylib",
+    "name" : "libsystem_c.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6445170688,
+    "size" : 114688,
+    "uuid" : "d72e40f3-f7a1-329e-938b-c99e263e665f",
+    "path" : "\/Volumes\/VOLUME\/*\/libc++abi.dylib",
+    "name" : "libc++abi.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6442876928,
+    "size" : 245076,
+    "uuid" : "9ee78930-1d2d-365d-8cdd-fe423f3c769c",
+    "path" : "\/Volumes\/VOLUME\/*\/libobjc.A.dylib",
+    "name" : "libobjc.A.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6443995136,
+    "size" : 282624,
+    "uuid" : "d5e90ee3-9c77-3808-a2ca-3e15e11a9aa1",
+    "path" : "\/Volumes\/VOLUME\/*\/libdispatch.dylib",
+    "name" : "libdispatch.dylib"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6446174208,
+    "CFBundleShortVersionString" : "6.9",
+    "CFBundleIdentifier" : "com.apple.CoreFoundation",
+    "size" : 3989504,
+    "uuid" : "e965e773-9803-3e02-8243-5cb8f4365f11",
+    "path" : "\/Volumes\/VOLUME\/*\/CoreFoundation.framework\/CoreFoundation",
+    "name" : "CoreFoundation",
+    "CFBundleVersion" : "3208"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6717054976,
+    "CFBundleShortVersionString" : "1.0",
+    "CFBundleIdentifier" : "com.apple.GraphicsServices",
+    "size" : 36864,
+    "uuid" : "9c82f9b7-b20c-3255-80a1-c4a1e74ef754",
+    "path" : "\/Volumes\/VOLUME\/*\/GraphicsServices.framework\/GraphicsServices",
+    "name" : "GraphicsServices",
+    "CFBundleVersion" : "1.0"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6523006976,
+    "CFBundleShortVersionString" : "1.0",
+    "CFBundleIdentifier" : "com.apple.UIKitCore",
+    "size" : 30662656,
+    "uuid" : "24ff1688-4bc4-3da8-8f17-c73d22f96263",
+    "path" : "\/Volumes\/VOLUME\/*\/UIKitCore.framework\/UIKitCore",
+    "name" : "UIKitCore",
+    "CFBundleVersion" : "8220.1.104"
+  },
+  {
+    "size" : 0,
+    "source" : "A",
+    "base" : 0,
+    "uuid" : "00000000-0000-0000-0000-000000000000"
+  },
+  {
+    "source" : "P",
+    "arch" : "arm64",
+    "base" : 6450683904,
+    "CFBundleShortVersionString" : "6.9",
+    "CFBundleIdentifier" : "com.apple.Foundation",
+    "size" : 12832768,
+    "uuid" : "b8e40415-c88f-3ceb-971c-82679743b9be",
+    "path" : "\/Volumes\/VOLUME\/*\/Foundation.framework\/Foundation",
+    "name" : "Foundation",
+    "CFBundleVersion" : "3208"
+  }
+],
+  "sharedCache" : {
+  "base" : 6442450944,
+  "size" : 3878862848,
+  "uuid" : "600dc7f7-d2ad-3639-89fa-69f9e3c5499a"
+},
+  "vmSummary" : "ReadOnly portion of Libraries: Total=1.6G resident=0K(0%) swapped_out_or_unallocated=1.6G(100%)\nWritable regions: Total=862.8M written=1939K(0%) resident=1939K(0%) swapped_out=0K(0%) unallocated=860.9M(100%)\n\n                                VIRTUAL   REGION \nREGION TYPE                        SIZE    COUNT (non-coalesced) \n===========                     =======  ======= \nActivity Tracing                   256K        1 \nColorSync                          128K        5 \nFoundation                          16K        1 \nIOSurface                         36.5M        4 \nKernel Alloc Once                   32K        1 \nMALLOC                           623.8M       93 \nMALLOC guard page                  128K        8 \nSTACK GUARD                       56.6M       38 \nStack                             55.1M       38 \nVM_ALLOCATE                      154.7M      376 \n__DATA                            30.9M      779 \n__DATA_CONST                      85.7M      801 \n__DATA_DIRTY                       139K       11 \n__FONT_DATA                        2352        1 \n__LINKEDIT                       693.1M       23 \n__OBJC_RW                         2703K        1 \n__TEXT                           894.5M      815 \n__TPRO_CONST                       148K        2 \ndyld private memory                2.5G       12 \nmapped file                        1.1G       18 \npage table in kernel              1939K        1 \nshared memory                       16K        1 \n===========                     =======  ======= \nTOTAL                              6.2G     3030 \n",
+  "legacyInfo" : {
+  "threadTriggered" : {
+    "queue" : "com.apple.main-thread"
+  }
+},
+  "logWritingSignature" : "7a28c401555afc6d6bfd8407d5854e8159d56395",
+  "roots_installed" : 0,
+  "bug_type" : "309",
+  "trmStatus" : 1,
+  "trialInfo" : {
+  "rollouts" : [
+    {
+      "rolloutId" : "695fd05d8ca5554688521e5e",
+      "factorPackIds" : [
+        "695fd08781fcd20ded79c1d3",
+        "695fd0d28ca5554688521e5f",
+        "695fd09c8774dc09015a80e9",
+        "695fd0b18774dc09015a80ea"
+      ],
+      "deploymentId" : 3
+    },
+    {
+      "rolloutId" : "639124e81d92412bfb4880b3",
+      "factorPackIds" : [
+
+      ],
+      "deploymentId" : 240000012
+    }
+  ],
+  "experiments" : [
+
+  ]
+}
+}
+
+Model: Mac16,8, BootROM 13822.61.10, proc 12:8:4 processors, 24 GB, SMC 
+Graphics: Apple M4 Pro, Apple M4 Pro, Built-In
+Display: Color LCD, 3024 x 1964 Retina, Main, MirrorOff, Online
+Memory Module: LPDDR5, Micron
+AirPort: spairport_wireless_card_type_wifi (0x14E4, 0x4388), wl0: Oct  3 2025 00:48:50 version 23.41.7.0.41.51.200 FWID 01-8b09c4e0
+IO80211_driverkit-1533.5 "IO80211_driverkit-1533.5" Nov 14 2025 18:26:34
+AirPort: 
+Bluetooth: Version (null), 0 services, 0 devices, 0 incoming serial ports
+Network Service: Wi-Fi, AirPort, en0
+Thunderbolt Bus: MacBook Pro, Apple Inc.
+Thunderbolt Bus: MacBook Pro, Apple Inc.
+Thunderbolt Bus: MacBook Pro, Apple Inc.
