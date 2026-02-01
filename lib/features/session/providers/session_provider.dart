@@ -173,7 +173,7 @@ class SessionController extends _$SessionController {
         final currentSessions = await future;
         final currentSession = currentSessions.firstWhere((s) => s.id == newId);
         currentSession.history = [...currentSession.history, aiMessage];
-        ref.invalidateSelf();
+        state = AsyncData(List<Session>.from(currentSessions));
 
         final responseText = await decisionProtocol.handleMessageStream(
           message: text,
@@ -181,13 +181,13 @@ class SessionController extends _$SessionController {
           userContext: userContext,
           onDelta: (delta) {
             aiMessage.text = (aiMessage.text ?? '') + delta;
-            ref.invalidateSelf();
+            state = AsyncData(List<Session>.from(currentSessions));
           },
         );
 
         aiMessage.text = responseText;
         await repo.saveSession(currentSession);
-        ref.invalidateSelf();
+        state = AsyncData(List<Session>.from(currentSessions));
         if (supabaseUser != null) {
           await syncRepository.syncSessions(supabaseUser.id);
         }
@@ -277,7 +277,7 @@ class SessionController extends _$SessionController {
     final currentSession = currentSessions.firstWhere((s) => s.id == newId);
     currentSession.history = [...currentSession.history, aiMessage];
     await repo.saveSession(currentSession);
-    ref.invalidateSelf();
+    state = AsyncData(List<Session>.from(currentSessions));
 
     try {
       final responseText = await decisionProtocol.generateFromDraftStream(
@@ -286,13 +286,14 @@ class SessionController extends _$SessionController {
         userContext: userContext,
         onDelta: (delta) {
           aiMessage.text = (aiMessage.text ?? '') + delta;
-          ref.invalidateSelf();
+          // Force immediate UI update by setting state directly
+          state = AsyncData(List<Session>.from(currentSessions));
         },
       );
 
       aiMessage.text = responseText;
       await repo.saveSession(currentSession);
-      ref.invalidateSelf();
+      state = AsyncData(List<Session>.from(currentSessions));
       if (supabaseUser != null) {
         await syncRepository.syncSessions(supabaseUser.id);
       }

@@ -29,12 +29,48 @@ class _DecisionDraftChatState extends ConsumerState<DecisionDraftChat> {
   bool _isGenerating = false;
   final _decisionController = TextEditingController();
   final _mustHaveController = TextEditingController();
+  final _scrollController = ScrollController();
+  bool _autoScrollEnabled = true;
+  int _lastHistoryLength = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
 
   @override
   void dispose() {
     _decisionController.dispose();
     _mustHaveController.dispose();
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    // If user scrolled up more than 100 pixels from bottom, disable auto-scroll
+    if (maxScroll - currentScroll > 100) {
+      _autoScrollEnabled = false;
+    } else {
+      _autoScrollEnabled = true;
+    }
+  }
+
+  void _scrollToBottom() {
+    if (!_autoScrollEnabled || !_scrollController.hasClients) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 150),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 
   @override
@@ -97,10 +133,23 @@ class _DecisionDraftChatState extends ConsumerState<DecisionDraftChat> {
 
         final showDraftOptionsBubble = _stepIndex == 1;
 
+        // Auto-scroll when history changes or content updates
+        if (session.history.length != _lastHistoryLength) {
+          _lastHistoryLength = session.history.length;
+          _scrollToBottom();
+        } else if (session.history.isNotEmpty) {
+          // Check if the last message content changed (streaming)
+          final lastMsg = session.history.last;
+          if (lastMsg.role == 'model' && (lastMsg.text?.isNotEmpty ?? false)) {
+            _scrollToBottom();
+          }
+        }
+
         return Column(
           children: [
             Expanded(
               child: ListView.builder(
+                controller: _scrollController,
                 padding: const EdgeInsets.all(24),
                 itemCount: session.history.length + (showDraftOptionsBubble ? 1 : 0),
                 itemBuilder: (context, index) {
@@ -108,7 +157,9 @@ class _DecisionDraftChatState extends ConsumerState<DecisionDraftChat> {
                     return _UserDraftOptionsBubble(sessionId: session.id);
                   }
                   final message = session.history[index];
-                  return _ChatMessageWidget(message: message);
+                  final isLastMessage = index == session.history.length - 1;
+                  final isStreaming = isLastMessage && _isGenerating && message.role == 'model';
+                  return _ChatMessageWidget(message: message, isStreaming: isStreaming);
                 },
               ),
             ),
@@ -486,9 +537,10 @@ class _DecisionDraftChatState extends ConsumerState<DecisionDraftChat> {
 }
 
 class _ChatMessageWidget extends StatelessWidget {
-  const _ChatMessageWidget({required this.message});
+  const _ChatMessageWidget({required this.message, this.isStreaming = false});
 
   final ChatMessage message;
+  final bool isStreaming;
 
   @override
   Widget build(BuildContext context) {
@@ -498,7 +550,9 @@ class _ChatMessageWidget extends StatelessWidget {
     Widget content;
     if (isUser && text.trim() == '[OPTIONS_UI]') {
       content = _UserOptionsBubble();
-    } else if (!isUser && _isJson(text)) {
+    } else if (!isUser && !isStreaming && _isCompleteJson(text)) {
+      // Only try to parse and render as DecisionMatrix when NOT streaming
+      // and JSON looks complete
       try {
         final data = jsonDecode(_extractJson(text));
         if (data is Map<String, dynamic> &&
@@ -511,6 +565,9 @@ class _ChatMessageWidget extends StatelessWidget {
       } catch (_) {
         content = _buildDefaultMarkdown(text, isUser);
       }
+    } else if (isStreaming && text.isNotEmpty) {
+      // While streaming, show raw text with a streaming indicator
+      content = _buildStreamingContent(text);
     } else {
       content = _buildDefaultMarkdown(text, isUser);
     }
@@ -556,15 +613,83 @@ class _ChatMessageWidget extends StatelessWidget {
     );
   }
 
-  bool _isJson(String text) {
-    return text.contains('```json') || (text.trim().startsWith('{') && text.trim().endsWith('}'));
+  Widget _buildStreamingContent(String text) {
+    // Show streaming JSON as formatted text with a subtle indicator
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[50],
+        border: Border.all(color: Colors.black, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 12,
+                height: 12,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[600]!),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Generating decision matrix...',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            text.length > 500 ? '${text.substring(text.length - 500)}...' : text,
+            style: TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 11,
+              color: Colors.grey[700],
+              height: 1.4,
+            ),
+            maxLines: 15,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool _isCompleteJson(String text) {
+    // Check if JSON looks complete (has balanced braces)
+    final trimmed = text.trim();
+    if (!trimmed.startsWith('{')) return false;
+    if (!trimmed.endsWith('}')) return false;
+
+    // Count braces to verify completeness
+    var depth = 0;
+    var inString = false;
+    for (var i = 0; i < trimmed.length; i++) {
+      final char = trimmed[i];
+      if (char == '"' && (i == 0 || trimmed[i - 1] != '\\')) {
+        inString = !inString;
+      }
+      if (inString) continue;
+      if (char == '{') depth++;
+      if (char == '}') depth--;
+    }
+    return depth == 0;
   }
 
   String _extractJson(String text) {
     if (text.contains('```json')) {
       final start = text.indexOf('```json') + 7;
       final end = text.lastIndexOf('```');
-      return text.substring(start, end).trim();
+      if (end > start) {
+        return text.substring(start, end).trim();
+      }
     }
     return text.trim();
   }
@@ -706,7 +831,7 @@ class _ChatInputPanel extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(top: BorderSide(color: Colors.black.withOpacity(0.1))),
+          border: Border(top: BorderSide(color: Colors.black.withValues(alpha: 0.1))),
         ),
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: maxHeight),
