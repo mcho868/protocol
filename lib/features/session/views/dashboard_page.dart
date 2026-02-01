@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../../../core/models/protocol_type.dart';
 import '../providers/session_provider.dart';
 import 'session_page.dart';
 
@@ -51,22 +52,22 @@ class DashboardPage extends ConsumerWidget {
                 _ProtocolCard(
                   title: 'CLARITY\nPROTOCOL',
                   description: 'Untangle complex thoughts.',
-                  onTap: () => _startSession(context, ref, 'Clarity Protocol'),
+                  onTap: () => _startSession(context, ref, ProtocolType.clarity),
                 ),
                 _ProtocolCard(
                   title: 'DECISION\nPROTOCOL',
                   description: 'Analyze second-order effects.',
-                  onTap: () => _startSession(context, ref, 'Decision Protocol'),
+                  onTap: () => _startSession(context, ref, ProtocolType.decision),
                 ),
                 _ProtocolCard(
                   title: 'ACTION\nPROTOCOL',
                   description: 'High-leverage execution.',
-                  onTap: () => _startSession(context, ref, 'Action Protocol'),
+                  onTap: () => _startSession(context, ref, ProtocolType.action),
                 ),
                 _ProtocolCard(
                   title: 'WEEKLY\nREVIEW\nPROTOCOL',
                   description: 'Audit your systems.',
-                  onTap: () => _startSession(context, ref, 'Weekly Review Protocol'),
+                  onTap: () => _startSession(context, ref, ProtocolType.weeklyReview),
                 ),
               ]),
             ),
@@ -89,23 +90,43 @@ class DashboardPage extends ConsumerWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   final session = sessions[index];
-                  return ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-                    title: Text(
-                      session.protocolType?.toUpperCase() ?? 'UNKNOWN',
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  return Dismissible(
+                    key: ValueKey('session-${session.id}'),
+                    direction: DismissDirection.endToStart,
+                    background: Container(
+                      color: Colors.black,
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      alignment: Alignment.centerRight,
+                      child: const Icon(Icons.delete, color: Colors.white),
                     ),
-                    subtitle: Text(
-                      session.timestamp?.toString().substring(0, 16) ?? '',
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 12),
-                    onTap: () => unawaited(Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SessionPage(sessionId: session.id),
+                    confirmDismiss: (_) async {
+                      try {
+                        await ref
+                            .read(sessionControllerProvider.notifier)
+                            .deleteSession(session.id);
+                        return true;
+                      } catch (_) {
+                        return false;
+                      }
+                    },
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+                      title: Text(
+                        session.protocolLabel.toUpperCase(),
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
-                    )),
+                      subtitle: Text(
+                        session.timestamp?.toString().substring(0, 16) ?? '',
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 12),
+                      onTap: () => unawaited(Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SessionPage(sessionId: session.id),
+                        ),
+                      )),
+                    ),
                   );
                 },
                 childCount: sessions.length,
@@ -123,13 +144,16 @@ class DashboardPage extends ConsumerWidget {
     );
   }
 
-  void _startSession(BuildContext context, WidgetRef ref, String type) async {
-    final id = await ref.read(sessionControllerProvider.notifier).createSession(type);
+  void _startSession(BuildContext context, WidgetRef ref, ProtocolType type) async {
+    final sessionRef = await ref.read(sessionControllerProvider.notifier).createSession(type);
     if (context.mounted) {
       unawaited(Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SessionPage(sessionId: id),
+          builder: (context) => SessionPage(
+            sessionId: sessionRef.id,
+            sessionUuid: sessionRef.uuid,
+          ),
         ),
       ));
     }

@@ -52,6 +52,7 @@
 - [x] **Artifact Logic:**
     - [x] Define the `Schema` for: `ActionPlan`, `DecisionMatrix`, `WeeklyReview`.
     - [x] Map Gemini's JSON output directly to Flutter Widgets.
+- [x] **Decision Protocol Spec:** `decision_protocal.md`
 
 ### Phase 4: The Loop (Retention)
 - [x] **Onboarding Flow:** 3-Question Intake Form -> Save to Isar.

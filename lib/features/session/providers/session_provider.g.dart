@@ -6,7 +6,7 @@ part of 'session_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sessionControllerHash() => r'14b3535d324f090785d15a8681c9d0b9a9e3e3c5';
+String _$sessionControllerHash() => r'087dbd9afba981dad699f274196af11280fc29cf';
 
 /// See also [SessionController].
 @ProviderFor(SessionController)

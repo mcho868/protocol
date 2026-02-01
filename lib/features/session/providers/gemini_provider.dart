@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/foundation.dart';
 import '../../../core/models/session.dart';
 import '../../../core/models/user_context.dart';
+import '../../../core/models/protocol_type.dart';
 
 part 'gemini_provider.g.dart';
 
@@ -17,7 +18,7 @@ class GeminiProtocolService extends _$GeminiProtocolService {
     required String prompt,
     required List<ChatMessage> history,
     UserContext? userContext,
-    String? protocolType,
+    ProtocolType? protocolType,
   }) async {
     final apiKey = dotenv.env['GEMINI_API_KEY'] ?? const String.fromEnvironment('GEMINI_API_KEY');
     if (apiKey.isEmpty) {
@@ -112,7 +113,7 @@ class GeminiProtocolService extends _$GeminiProtocolService {
     }
   }
 
-  String _buildSystemPrompt(UserContext? context, String? protocolType) {
+  String _buildSystemPrompt(UserContext? context, ProtocolType? protocolType) {
     final basePrompt = '''
 You are "PROTOCOL", a minimalist AI executive coach for systems thinkers. 
 Your goal is to help high-performers optimize their systems, decision-making, and execution.
@@ -128,12 +129,12 @@ USER CONTEXT:
 Core Values: ${context?.coreValues.join(', ') ?? 'Not defined'}
 North Star Metric: ${context?.northStarMetric ?? 'Not defined'}
 
-CURRENT PROTOCOL: ${protocolType ?? 'General Clarity'}
+CURRENT PROTOCOL: ${protocolType?.label ?? 'General Clarity'}
 ''';
 
-    if (protocolType == 'Decision Coach') {
+    if (protocolType == ProtocolType.decision) {
       return '$basePrompt\nAnalyze the decision using a weighted matrix. Consider unintended consequences.';
-    } else if (protocolType == 'Action Coach') {
+    } else if (protocolType == ProtocolType.action) {
       return '$basePrompt\nFocus on high-leverage actions. Apply the 80/20 principle.';
     }
     

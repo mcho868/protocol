@@ -7,7 +7,7 @@ part of 'gemini_provider.dart';
 // **************************************************************************
 
 String _$geminiProtocolServiceHash() =>
-    r'33f4acdcf1635e4aeaf74e7bce06353adf410dff';
+    r'aee35bda10c75ff2df9b81503079321e28636bc7';
 
 /// See also [GeminiProtocolService].
 @ProviderFor(GeminiProtocolService)

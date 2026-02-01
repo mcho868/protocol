@@ -28,18 +28,29 @@ const SessionSchema = CollectionSchema(
       name: r'lastSyncedAt',
       type: IsarType.dateTime,
     ),
-    r'protocolType': PropertySchema(
+    r'protocol': PropertySchema(
       id: 2,
+      name: r'protocol',
+      type: IsarType.byte,
+      enumMap: _SessionprotocolEnumValueMap,
+    ),
+    r'protocolLabel': PropertySchema(
+      id: 3,
+      name: r'protocolLabel',
+      type: IsarType.string,
+    ),
+    r'protocolType': PropertySchema(
+      id: 4,
       name: r'protocolType',
       type: IsarType.string,
     ),
     r'timestamp': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'timestamp',
       type: IsarType.dateTime,
     ),
     r'uuid': PropertySchema(
-      id: 4,
+      id: 6,
       name: r'uuid',
       type: IsarType.string,
     )
@@ -99,6 +110,7 @@ int _sessionEstimateSize(
       bytesCount += ChatMessageSchema.estimateSize(value, offsets, allOffsets);
     }
   }
+  bytesCount += 3 + object.protocolLabel.length * 3;
   {
     final value = object.protocolType;
     if (value != null) {
@@ -127,9 +139,11 @@ void _sessionSerialize(
     object.history,
   );
   writer.writeDateTime(offsets[1], object.lastSyncedAt);
-  writer.writeString(offsets[2], object.protocolType);
-  writer.writeDateTime(offsets[3], object.timestamp);
-  writer.writeString(offsets[4], object.uuid);
+  writer.writeByte(offsets[2], object.protocol.index);
+  writer.writeString(offsets[3], object.protocolLabel);
+  writer.writeString(offsets[4], object.protocolType);
+  writer.writeDateTime(offsets[5], object.timestamp);
+  writer.writeString(offsets[6], object.uuid);
 }
 
 Session _sessionDeserialize(
@@ -148,9 +162,12 @@ Session _sessionDeserialize(
       [];
   object.id = id;
   object.lastSyncedAt = reader.readDateTimeOrNull(offsets[1]);
-  object.protocolType = reader.readStringOrNull(offsets[2]);
-  object.timestamp = reader.readDateTimeOrNull(offsets[3]);
-  object.uuid = reader.readStringOrNull(offsets[4]);
+  object.protocol =
+      _SessionprotocolValueEnumMap[reader.readByteOrNull(offsets[2])] ??
+          ProtocolType.clarity;
+  object.protocolType = reader.readStringOrNull(offsets[4]);
+  object.timestamp = reader.readDateTimeOrNull(offsets[5]);
+  object.uuid = reader.readStringOrNull(offsets[6]);
   return object;
 }
 
@@ -172,15 +189,33 @@ P _sessionDeserializeProp<P>(
     case 1:
       return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readStringOrNull(offset)) as P;
+      return (_SessionprotocolValueEnumMap[reader.readByteOrNull(offset)] ??
+          ProtocolType.clarity) as P;
     case 3:
-      return (reader.readDateTimeOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
+      return (reader.readStringOrNull(offset)) as P;
+    case 5:
+      return (reader.readDateTimeOrNull(offset)) as P;
+    case 6:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
+
+const _SessionprotocolEnumValueMap = {
+  'clarity': 0,
+  'decision': 1,
+  'action': 2,
+  'weeklyReview': 3,
+};
+const _SessionprotocolValueEnumMap = {
+  0: ProtocolType.clarity,
+  1: ProtocolType.decision,
+  2: ProtocolType.action,
+  3: ProtocolType.weeklyReview,
+};
 
 Id _sessionGetId(Session object) {
   return object.id;
@@ -714,6 +749,191 @@ extension SessionQueryFilter
     });
   }
 
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolEqualTo(
+      ProtocolType value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'protocol',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolGreaterThan(
+    ProtocolType value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'protocol',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLessThan(
+    ProtocolType value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'protocol',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolBetween(
+    ProtocolType lower,
+    ProtocolType upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'protocol',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'protocolLabel',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition>
+      protocolLabelGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'protocolLabel',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'protocolLabel',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'protocolLabel',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'protocolLabel',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'protocolLabel',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'protocolLabel',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'protocolLabel',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition> protocolLabelIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'protocolLabel',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterFilterCondition>
+      protocolLabelIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'protocolLabel',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<Session, Session, QAfterFilterCondition> protocolTypeIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1104,6 +1324,30 @@ extension SessionQuerySortBy on QueryBuilder<Session, Session, QSortBy> {
     });
   }
 
+  QueryBuilder<Session, Session, QAfterSortBy> sortByProtocol() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocol', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterSortBy> sortByProtocolDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocol', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterSortBy> sortByProtocolLabel() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocolLabel', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterSortBy> sortByProtocolLabelDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocolLabel', Sort.desc);
+    });
+  }
+
   QueryBuilder<Session, Session, QAfterSortBy> sortByProtocolType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'protocolType', Sort.asc);
@@ -1167,6 +1411,30 @@ extension SessionQuerySortThenBy
     });
   }
 
+  QueryBuilder<Session, Session, QAfterSortBy> thenByProtocol() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocol', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterSortBy> thenByProtocolDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocol', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterSortBy> thenByProtocolLabel() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocolLabel', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Session, Session, QAfterSortBy> thenByProtocolLabelDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protocolLabel', Sort.desc);
+    });
+  }
+
   QueryBuilder<Session, Session, QAfterSortBy> thenByProtocolType() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'protocolType', Sort.asc);
@@ -1212,6 +1480,20 @@ extension SessionQueryWhereDistinct
     });
   }
 
+  QueryBuilder<Session, Session, QDistinct> distinctByProtocol() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'protocol');
+    });
+  }
+
+  QueryBuilder<Session, Session, QDistinct> distinctByProtocolLabel(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'protocolLabel',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Session, Session, QDistinct> distinctByProtocolType(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1250,6 +1532,18 @@ extension SessionQueryProperty
   QueryBuilder<Session, DateTime?, QQueryOperations> lastSyncedAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'lastSyncedAt');
+    });
+  }
+
+  QueryBuilder<Session, ProtocolType, QQueryOperations> protocolProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'protocol');
+    });
+  }
+
+  QueryBuilder<Session, String, QQueryOperations> protocolLabelProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'protocolLabel');
     });
   }
 

@@ -61,7 +61,7 @@ class SyncRepository {
         await _supabase.from('sessions').upsert({
           'uuid': session.uuid,
           'user_id': userId,
-          'protocol_type': session.protocolType,
+          'protocol_type': session.protocolLabel,
           'created_at': session.timestamp?.toIso8601String(),
           'history': session.history.map((m) => {
             'role': m.role,
@@ -74,5 +74,16 @@ class SyncRepository {
         await repo.saveSession(session);
       }
     }
+  }
+
+  Future<void> deleteSessionRemote({
+    required String userId,
+    required String sessionUuid,
+  }) async {
+    await _supabase
+        .from('sessions')
+        .delete()
+        .eq('user_id', userId)
+        .eq('uuid', sessionUuid);
   }
 }

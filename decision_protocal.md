@@ -21,7 +21,7 @@ General chat is an open-loop mirror that reinforces bias and buries decisions in
 - reduce satisficing drift via explicit adequacy criteria,
 - mitigate confirmation bias via “outside view” and disconfirming checks,
 - enforce follow-through via commitment devices and implementation intentions,
-- ensure auditability via a persistent artifact (Decision Log / Matrix).
+- ensure auditability via nt artifact (Decision Log / Matrix).
 
 ---
 
@@ -56,7 +56,7 @@ On review date, if the decision produced the expected outcome:
   - which criteria weights were predictive,
   - which risks did/didn’t materialize,
 - optionally nudge user to increase reliance on similar criteria next time
-  (lightweight “calibration” summary, not heavy model training).
+  (lightweiglibration” summary, not heavy model training).
 
 ### Not Correct (Decision Outcome “Not Correct”)
 
@@ -89,7 +89,7 @@ If the decision did NOT work as expected:
 
 Acceptance:
 
-- Decision sessions never use base prompt fallback.
+- Decision sessions never ust fallback.
 
 ---
 
@@ -135,7 +135,7 @@ Acceptance:
 
 ## UI/UX Flow (Progressive Disclosure)
 
-### Step 1 — Frame + Reversibility Audit
+### Step 1 — Frame +ersibility Audit
 
 UI prompts:
 
@@ -178,9 +178,7 @@ Seed criteria using:
 Score each option per criterion (0–10), with 1-line rationale.
 Compute weighted totals.
 
-### Step 6 — Trade-off Audit (Pareto / sacrifice visibility)
-
-Explicitly write: “Choosing Option A sacrifices X.”
+### Step 6 — Trade-off Audit (Pareto / sacrifice vte: “Choosing Option A sacrifices X.”
 Must include at least 1 sacrifice per option.
 
 ### Step 7 — Decision Lock + Commitment Device
@@ -217,7 +215,7 @@ Create `DecisionMatrix` with required fields:
   - `foregone_options` (string[])  // “If you do this, what 3 things are delayed?”
 - `options` (2–4 items):
   - `id`, `name`, `description`
-- `criteria` (3–6 items):
+- `cr):
   - `id`, `name`, `weight` (int), `why_it_matters` (string)
   - weights must sum to 100
 - `scores`:
@@ -248,7 +246,7 @@ Create `DecisionMatrix` with required fields:
 
 Validation constraints:
 
-- options >= 3 preferred; minimum 2 allowed only if decision is trivial (but default require 3).
+- >= 3 preferred; minimum 2 allowed only if decision is trivial (but default require 3).
 - criteria weights sum exactly 100.
 - scores cover every (option, criterion) pair.
 - first_action must be under 5 minutes (enforce by prompt + “timebox” field optional).
@@ -283,7 +281,7 @@ Stop condition:
 
 - all required fields acquired OR agent chooses assumptions and lists them explicitly.
 
-### Artifact Stage Prompt (JSON-only)
+### Artifact Stage PSON-only)
 
 - `responseMimeType: application/json`
 - Provide schema + strict instruction: “Return ONLY JSON that matches schema. No markdown.”
@@ -328,8 +326,7 @@ If FAILURE and reversibility == two_way_door:
 If FAILURE and reversibility == one_way_door:
 
 - enforce rigor:
-  - premortem/postmortem summary
-  - identify process failure (framing/options/criteria/execution)
+  - premortem/postmortem entify process failure (framing/options/criteria/execution)
   - explicit anti-sunk-cost decision: continue vs exit using exit_criteria
 
 ---
@@ -371,9 +368,7 @@ Then:
   - Artifact generation
 - [ ] Persist stage events
 
-### 4) UI Widgets
-
-- [ ] DecisionMatrix view:
+### 4) UI WidgetsonMatrix view:
   - header: title, deadline, reversibility badge
   - criteria list + weights
   - totals summary + tradeoffs

@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+import 'protocol_type.dart';
 
 part 'session.g.dart';
 
@@ -14,9 +15,14 @@ class Session {
   @Index()
   DateTime? timestamp;
 
+  @enumerated
+  ProtocolType protocol = ProtocolType.clarity;
+
   String? protocolType;
 
   List<ChatMessage> history = [];
+
+  String get protocolLabel => protocolType ?? protocol.label;
 }
 
 @embedded

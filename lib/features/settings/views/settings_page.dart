@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../onboarding/views/onboarding_page.dart';
+import '../../decision/views/decision_log_page.dart';
+import '../../debug/views/api_testroom_page.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/settings_item.dart';
 import '../widgets/settings_section.dart';
@@ -54,6 +56,30 @@ class SettingsPage extends ConsumerWidget {
                 child: Text(
                   northStar,
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+              ),
+              const SizedBox(height: 32),
+              SettingsSection(
+                title: 'DECISION LOG',
+                actionText: 'VIEW',
+                onAction: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const DecisionLogPage()),
+                ),
+                child: const Text(
+                  'Review outcomes and update decision learnings.',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+              ),
+              const SizedBox(height: 32),
+              SettingsSection(
+                title: 'API TESTROOM',
+                actionText: 'OPEN',
+                onAction: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const ApiTestroomPage()),
+                ),
+                child: const Text(
+                  'Raw streaming output (no system prompt).',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ),
             ],
