@@ -2,12 +2,23 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/services/auth_service.dart';
+import '../../../core/services/sync_repository.dart';
 import '../../settings/providers/settings_provider.dart';
 import 'core_values_step.dart';
 import 'north_star_step.dart';
+import '../onboarding_presets.dart';
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({super.key});
+  final List<String>? prefillCoreValues;
+  final String? prefillNorthStarMetric;
+  final bool popOnComplete;
+
+  const OnboardingPage({
+    super.key,
+    this.prefillCoreValues,
+    this.prefillNorthStarMetric,
+    this.popOnComplete = false,
+  });
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
@@ -27,6 +38,55 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final _customNorthStarNameController = TextEditingController();
   final _customNorthStarUnitController = TextEditingController();
   final _customNorthStarTargetController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _prefillCoreValues();
+    _prefillNorthStarMetric();
+  }
+
+  void _prefillCoreValues() {
+    final values = widget.prefillCoreValues;
+    if (values == null || values.isEmpty) return;
+    for (final value in values) {
+      if (coreValuePresets.contains(value)) {
+        _selectedCoreValues.add(value);
+      } else {
+        _customCoreValues.add(value);
+      }
+    }
+    if (_customCoreValues.isNotEmpty) {
+      _useCustomCoreValues = true;
+    }
+  }
+
+  void _prefillNorthStarMetric() {
+    final metric = widget.prefillNorthStarMetric;
+    if (metric == null || metric.isEmpty) return;
+    if (northStarPresets.contains(metric)) {
+      _selectedNorthStar = metric;
+      return;
+    }
+    _useCustomNorthStar = true;
+    final match = RegExp(r'^(.*)\\s*\\((.*)\\)$').firstMatch(metric);
+    if (match == null) {
+      _customNorthStarNameController.text = metric;
+      return;
+    }
+    final name = match.group(1)?.trim() ?? '';
+    final details = match.group(2)?.trim() ?? '';
+    _customNorthStarNameController.text = name;
+    final parts = details.split('/');
+    if (parts.isEmpty) return;
+    final left = parts.first.trim();
+    final leftParts = left.split(' ');
+    if (leftParts.isEmpty) return;
+    _customNorthStarTargetController.text = leftParts.first.trim();
+    if (leftParts.length > 1) {
+      _customNorthStarUnitController.text = leftParts.sublist(1).join(' ').trim();
+    }
+  }
 
   @override
   void dispose() {
@@ -79,7 +139,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       selectedValues: _selectedCoreValues,
                       customValues: _customCoreValues,
                       useCustom: _useCustomCoreValues,
-                      onToggleCustom: (value) => setState(() => _useCustomCoreValues = value),
+                      onToggleCustom: _setUseCustomCoreValues,
                       customController: _customCoreValuesController,
                       onToggleValue: _toggleCoreValue,
                       onAddCustomValue: _addCustomCoreValue,
@@ -88,11 +148,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     NorthStarStep(
                       selectedMetric: _selectedNorthStar,
                       useCustom: _useCustomNorthStar,
-                      onToggleCustom: (value) => setState(() => _useCustomNorthStar = value),
+                      onToggleCustom: _setUseCustomNorthStar,
                       nameController: _customNorthStarNameController,
                       unitController: _customNorthStarUnitController,
                       targetController: _customNorthStarTargetController,
-                      onSelectMetric: (metric) => setState(() => _selectedNorthStar = metric),
+                      onSelectMetric: _selectNorthStarMetric,
                     ),
                   ],
                 ),
@@ -135,6 +195,39 @@ class _OnboardingPageState extends State<OnboardingPage> {
       }
       if (_selectedCoreValues.length + _customCoreValues.length >= 3) return;
       _selectedCoreValues.add(value);
+    });
+  }
+
+  void _setUseCustomCoreValues(bool value) {
+    setState(() {
+      _useCustomCoreValues = value;
+      if (!value) {
+        _customCoreValues.clear();
+        _customCoreValuesController.clear();
+      }
+    });
+  }
+
+  void _setUseCustomNorthStar(bool value) {
+    setState(() {
+      _useCustomNorthStar = value;
+      if (value) {
+        _selectedNorthStar = null;
+      } else {
+        _customNorthStarNameController.clear();
+        _customNorthStarUnitController.clear();
+        _customNorthStarTargetController.clear();
+      }
+    });
+  }
+
+  void _selectNorthStarMetric(String metric) {
+    setState(() {
+      _selectedNorthStar = metric;
+      _useCustomNorthStar = false;
+      _customNorthStarNameController.clear();
+      _customNorthStarUnitController.clear();
+      _customNorthStarTargetController.clear();
     });
   }
 
@@ -195,9 +288,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
         coreValues: values,
         northStarMetric: metric,
       );
+      await ref.read(syncRepositoryProvider).syncAll();
       
       if (mounted) {
-        unawaited(Navigator.of(context).pushReplacementNamed('/'));
+        if (widget.popOnComplete) {
+          Navigator.of(context).pop();
+        } else {
+          unawaited(Navigator.of(context).pushReplacementNamed('/'));
+        }
       }
     }
   }

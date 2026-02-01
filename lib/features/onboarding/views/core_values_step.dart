@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/onboarding_selectable_tile.dart';
+import '../onboarding_presets.dart';
 
 class CoreValuesStep extends StatelessWidget {
   final Set<String> selectedValues;
@@ -22,32 +23,6 @@ class CoreValuesStep extends StatelessWidget {
     required this.onAddCustomValue,
     required this.onRemoveCustomValue,
   });
-
-  static const List<String> _coreValuePresets = [
-    'Focus',
-    'Execution',
-    'Growth',
-    'Craft',
-    'Autonomy',
-    'Clarity',
-    'Integrity',
-    'Leverage',
-    'Resilience',
-    'Simplicity',
-  ];
-
-  static const Map<String, String> _coreValueDefinitions = {
-    'Focus': 'I prioritise meaningful work and deliberately eliminate distractions.',
-    'Execution': 'I value shipping and progress over perfection.',
-    'Growth': 'I optimise for long-term learning and compounding improvement.',
-    'Craft': 'I care about quality, standards, and building things properly.',
-    'Autonomy': 'I value control over my time, decisions, and direction.',
-    'Clarity': 'I prefer clear thinking, explicit trade-offs, and defined outcomes.',
-    'Integrity': 'I follow through on commitments and act in alignment with my principles.',
-    'Leverage': 'I use systems, tools, and structure to multiply my impact.',
-    'Resilience': 'I recover quickly from setbacks and maintain forward momentum.',
-    'Simplicity': 'I choose simple, maintainable solutions over unnecessary complexity.',
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +55,9 @@ class CoreValuesStep extends StatelessWidget {
             style: TextStyle(fontSize: 12, color: Colors.grey),
           ),
           const SizedBox(height: 24),
-          ..._coreValuePresets.map((value) => OnboardingSelectableTile(
+          ...coreValuePresets.map((value) => OnboardingSelectableTile(
                 title: value,
-                subtitle: _coreValueDefinitions[value] ?? '',
+                subtitle: coreValueDefinitions[value] ?? '',
                 selected: selectedValues.contains(value),
                 onTap: () => onToggleValue(value),
               )),

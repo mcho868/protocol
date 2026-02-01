@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/onboarding_selectable_tile.dart';
+import '../onboarding_presets.dart';
 
 class NorthStarStep extends StatelessWidget {
   final String? selectedMetric;
@@ -20,30 +21,6 @@ class NorthStarStep extends StatelessWidget {
     required this.targetController,
     required this.onSelectMetric,
   });
-
-  static const List<String> _northStarPresets = [
-    'Deep Work Blocks per Week',
-    'Shipped Outputs per Week',
-    'High-Impact Tasks Completed',
-    'Weekly Review Completion',
-    'Execution Consistency',
-    'Revenue-Generating Actions',
-  ];
-
-  static const Map<String, String> _northStarDefinitions = {
-    'Deep Work Blocks per Week':
-        'Number of focused, distraction-free work sessions completed per week.',
-    'Shipped Outputs per Week':
-        'Count of externally visible deliverables (code shipped, content published, features released).',
-    'High-Impact Tasks Completed':
-        'Number of P0/P1 tasks completed that materially move projects forward.',
-    'Weekly Review Completion':
-        'Whether the weekly review ritual was completed consistently.',
-    'Execution Consistency':
-        'Percentage of planned days where meaningful execution occurred.',
-    'Revenue-Generating Actions':
-        'Count of actions tied to revenue creation (sales calls, proposals sent, launches).',
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +53,9 @@ class NorthStarStep extends StatelessWidget {
             style: TextStyle(fontSize: 12, color: Colors.grey),
           ),
           const SizedBox(height: 24),
-          ..._northStarPresets.map((metric) => OnboardingSelectableTile(
+          ...northStarPresets.map((metric) => OnboardingSelectableTile(
                 title: metric,
-                subtitle: _northStarDefinitions[metric] ?? '',
+                subtitle: northStarDefinitions[metric] ?? '',
                 selected: selectedMetric == metric,
                 onTap: () => onSelectMetric(metric),
               )),

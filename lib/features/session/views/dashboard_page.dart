@@ -18,7 +18,7 @@ class DashboardPage extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              // Navigate to settings
+              Navigator.of(context).pushNamed('/settings');
             },
           ),
         ],
@@ -49,24 +49,24 @@ class DashboardPage extends ConsumerWidget {
               ),
               delegate: SliverChildListDelegate([
                 _ProtocolCard(
-                  title: 'CLARITY\nCOACH',
+                  title: 'CLARITY\nPROTOCOL',
                   description: 'Untangle complex thoughts.',
-                  onTap: () => _startSession(context, ref, 'Clarity Coach'),
+                  onTap: () => _startSession(context, ref, 'Clarity Protocol'),
                 ),
                 _ProtocolCard(
-                  title: 'DECISION\nCOACH',
+                  title: 'DECISION\nPROTOCOL',
                   description: 'Analyze second-order effects.',
-                  onTap: () => _startSession(context, ref, 'Decision Coach'),
+                  onTap: () => _startSession(context, ref, 'Decision Protocol'),
                 ),
                 _ProtocolCard(
-                  title: 'ACTION\nCOACH',
+                  title: 'ACTION\nPROTOCOL',
                   description: 'High-leverage execution.',
-                  onTap: () => _startSession(context, ref, 'Action Coach'),
+                  onTap: () => _startSession(context, ref, 'Action Protocol'),
                 ),
                 _ProtocolCard(
-                  title: 'WEEKLY\nREVIEW',
+                  title: 'WEEKLY\nREVIEW\nPROTOCOL',
                   description: 'Audit your systems.',
-                  onTap: () => _startSession(context, ref, 'Weekly Review Coach'),
+                  onTap: () => _startSession(context, ref, 'Weekly Review Protocol'),
                 ),
               ]),
             ),
